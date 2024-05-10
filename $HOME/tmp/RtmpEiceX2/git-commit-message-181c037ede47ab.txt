@@ -1,0 +1,3 @@
+- Modifications to help documentation man/read_excel.Rd
+
+- Creation of help documentation man/make_did_table.Rd

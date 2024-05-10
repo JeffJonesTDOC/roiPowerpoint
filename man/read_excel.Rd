@@ -17,7 +17,7 @@ Reads all relevant sheets used to generate the ROI PowerPoint from the given ROI
 }
 \arguments{
 \item{study}{the timeframe of the ROI analysis. Set to "YOY", "1YR", "2YR", or "3YR".}
-\item{file_name}{The name of the ROI workbook from which the sheets are extracted.}
+\item{file_name}{The name of the ROI workbook from which the sheets are extracted. Must include .xlsm extension.}
 }
 \examples{
 

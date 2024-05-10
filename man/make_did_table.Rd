@@ -11,7 +11,7 @@ a year-over-year analysis will likely cause errors, as a YOY analysis has only 1
 }
 \arguments{
 \itemize{
-  \item{nYear}{The number of years of the ROI analysis (post-period). For year-over-year, set to 1. For a two-year analysis (2 cohorts), set to 2, and et cetera.}
+  \item{nYear}{The number of years of the ROI analysis (post-period). For year-over-year, set to 1. For a two-year analysis (with 2 cohorts), set to 2, and et cetera.}
   \item{spendSummaryTable}{The spending table of various condition-related and POS claims. Use extract_spend_summary_table() to generate it.}
   \item{pooledPharSpendingTable}{The pooled spending table of total and condition-related pharmaceutical costs. Use extract_phar_table() to generate it.}
   \item{year0}{Year 0, or pre-period, of the analysis. Can be specified as an integer or character. It is returned by sheet_data_extract().}
