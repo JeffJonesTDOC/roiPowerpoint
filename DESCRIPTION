@@ -1,11 +1,10 @@
 Package: roiPowerpoint
 Type: Package
 Title: Generate PowerPoint Decks from ROI Workbooks
-Version: 0.1.0
+Version: 0.1.1
 Author: Jeffrey Jones
-Maintainer: jeff.jones@teladochealth.com
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Extracts information from a given ROI workbook. Provided it is formatted correctly as of 05/08/2024
+various information is extracted and formatted into tables, graphs, charts, and bulletpoints.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
