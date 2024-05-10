@@ -1,1 +1,12 @@
-exportPattern("^[[:alpha:]]+")
+#exportPattern("^[[:alpha:]]+")
+export(extract_phar_table)
+export(extract_pppm_changes)
+export(extract_sheet_data)
+export(extract_spend_summary_table)
+export(include_rx_table)
+export(make_attrition_table)
+export(make_did_table)
+export(make_pooled_cohort_tables)
+export(make_roi_table)
+export(read_excel)
+
