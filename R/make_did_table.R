@@ -1,7 +1,7 @@
 # This function creates the difference-in-difference flextable used in the ROI
 # results slide.
 
-make_DID_table <- function(post_period_length, spend_summary_table,pooled_phar_spending_table,year0, year1) {
+make_did_table <- function(post_period_length, spend_summary_table,pooled_phar_spending_table,year0, year1) {
   if (post_period_length == 1) {
     DID_table = as.data.frame(t(c("Medical",
                                  spend_summary_table[1,2],spend_summary_table[1,3],as.numeric(spend_summary_table[1,2])-as.numeric(spend_summary_table[1,3]), #Non-member med costs & difference
