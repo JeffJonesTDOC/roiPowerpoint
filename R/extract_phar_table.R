@@ -2,7 +2,7 @@
 # also assigns appropriate column names to the table and calculates the
 # difference-in-difference dollar amounts and appends them to the table.
 
-extract_phar_table <- function(has_rx, post_period_length, ROI_sheet, pharmacy_costs_sheet, spend_summary_table_column_names, spend_summary_table) {
+extract_phar_table <- function(has_rx, post_period_length, ROI_sheet, pharmacy_costs_sheet, claims_detail_table_column_names, claims_detail_table) {
   if (has_rx) {
     if (post_period_length > 1) {
       rx_costs_row_index = which(ROI_sheet[,1] == "Pharmacy costs")+3
@@ -26,7 +26,7 @@ extract_phar_table <- function(has_rx, post_period_length, ROI_sheet, pharmacy_c
       }
     } else {
       pooled_phar_spending_table = pharmacy_costs_sheet[min(which(pharmacy_costs_sheet[,2] == "Total costs")):(min(which(pharmacy_costs_sheet[,2] == "Total costs"))+1),2:ncol(pharmacy_costs_sheet)]
-      colnames(pooled_phar_spending_table) = spend_summary_table_column_names
+      colnames(pooled_phar_spending_table) = claims_detail_table_column_names
     }
 
     # Add a space to any duplicate column names
@@ -44,7 +44,7 @@ extract_phar_table <- function(has_rx, post_period_length, ROI_sheet, pharmacy_c
       starting_column_count = ncol(pooled_phar_spending_table)
       for (i in 1:post_period_length) {
         pooled_phar_spending_table[,starting_column_count+i] = (as.numeric(pooled_phar_spending_table[,3+post_period_length*2+i])-as.numeric(pooled_phar_spending_table[,3+post_period_length*2]))-(as.numeric(pooled_phar_spending_table[,2+i])-as.numeric(pooled_phar_spending_table[,2]))
-        colnames(pooled_phar_spending_table)[starting_column_count+i] = colnames(spend_summary_table)[starting_column_count+i]
+        colnames(pooled_phar_spending_table)[starting_column_count+i] = colnames(claims_detail_table)[starting_column_count+i]
       }
     }
   } else {pooled_phar_spending_table = NULL}

@@ -1,12 +1,13 @@
 # This function creates the difference-in-difference flextable used in the ROI
 # results slide.
 
-make_did_table <- function(post_period_length, spend_summary_table,pooled_phar_spending_table,year0, year1) {
+make_did_table <- function(post_period_length, claims_detail_table,pooled_phar_spending_table,year0) {
+  if(typeof(year0) != "character") {year0 = as.character(year0)}
   if (post_period_length == 1) {
     DID_table = as.data.frame(t(c("Medical",
-                                 spend_summary_table[1,2],spend_summary_table[1,3],as.numeric(spend_summary_table[1,2])-as.numeric(spend_summary_table[1,3]), #Non-member med costs & difference
-                                 spend_summary_table[1,5],spend_summary_table[1,6],as.numeric(spend_summary_table[1,5])-as.numeric(spend_summary_table[1,6]), # Member med costs & difference
-                                 (as.numeric(spend_summary_table[1,5])-as.numeric(spend_summary_table[1,6]))-(as.numeric(spend_summary_table[1,2])-as.numeric(spend_summary_table[1,3]))))) # DiD
+                                 claims_detail_table[1,2],claims_detail_table[1,3],as.numeric(claims_detail_table[1,2])-as.numeric(claims_detail_table[1,3]), #Non-member med costs & difference
+                                 claims_detail_table[1,5],claims_detail_table[1,6],as.numeric(claims_detail_table[1,5])-as.numeric(claims_detail_table[1,6]), # Member med costs & difference
+                                 (as.numeric(claims_detail_table[1,5])-as.numeric(claims_detail_table[1,6]))-(as.numeric(claims_detail_table[1,2])-as.numeric(claims_detail_table[1,3]))))) # DiD
     if (has_rx) {
       DID_table = rbind(DID_table,t(c("Pharmaceutical",
                                     round(as.numeric(pooled_phar_spending_table[1,2])),round(as.numeric(pooled_phar_spending_table[1,3])),round(as.numeric(pooled_phar_spending_table[1,2])-as.numeric(pooled_phar_spending_table[1,3])),
@@ -16,7 +17,7 @@ make_did_table <- function(post_period_length, spend_summary_table,pooled_phar_s
     for (i in 2:8) {
       for (j in 1:nrow(DID_table)) DID_table[j,i] = paste0("$",DID_table[j,i]); DID_table[j,i] = gsub("\\$-","-\\$",DID_table[j,i])
     }
-    colnames(DID_table) = c("Total allowed costs",year0,year1,"Difference",paste0(" ",year0),paste0(" ",year1)," Difference","Savings")
+    colnames(DID_table) = c("Total allowed costs",year0,as.character(as.numeric(year0)+1),"Difference",paste0(" ",year0),paste0(" ",as.character(as.numeric(year0)+1))," Difference","Savings")
     DID_flextable = flextable::flextable(DID_table)
     DID_flextable <- flextable::add_header_row(DID_flextable,values = c(" ","Non-member","Member","DID"), colwidths = c(1,3,3,1))
     DID_flextable <- flextable::bg(DID_flextable,bg="#66478F",i=1,j=2:8,part="header")

@@ -1,7 +1,7 @@
 # This function extracts the year-over-year PPPM difference in differences,
 # for both medical costs and pharmacy costs, if they exist.
 
-extract_pppm_changes <- function(has_rx, post_period_length, ROI_sheet,spend_summary_table, program, pharmacy_costs_sheet,spend_summary_table_column_names, pooled_phar_spending_table) {
+extract_pppm_changes <- function(has_rx, post_period_length, ROI_sheet,claims_detail_table, program, pharmacy_costs_sheet,claims_detail_table_column_names, pooled_phar_spending_table) {
   if (has_rx) {
     pppm_changes = as.data.frame(matrix(nrow=3,ncol=post_period_length*2))
     row.names(pppm_changes) = c("Net Medical Costs","Net Pharmacy Costs","Net Diabetes Rx Costs")
@@ -14,17 +14,17 @@ extract_pppm_changes <- function(has_rx, post_period_length, ROI_sheet,spend_sum
 
   for (i in 1:post_period_length) {
     # Total Costs
-    nonmember_cost_difference = as.numeric(spend_summary_table[1,(2+i)])-as.numeric(spend_summary_table[1,2])
-    member_cost_difference = as.numeric(spend_summary_table[1,(2*post_period_length)+3+i])-as.numeric(spend_summary_table[1,(2*post_period_length)+3])
+    nonmember_cost_difference = as.numeric(claims_detail_table[1,(2+i)])-as.numeric(claims_detail_table[1,2])
+    member_cost_difference = as.numeric(claims_detail_table[1,(2*post_period_length)+3+i])-as.numeric(claims_detail_table[1,(2*post_period_length)+3])
     if (program == "Hypertension" && !(study %in% c("YOY","1YR"))) {
       #if (program == "Hypertension" && "HTN_population" != "All" && study %in% c("YOY","1YR")) {
       pppm_changes[1,(2*i)-1] = round(member_cost_difference-nonmember_cost_difference,0)
     } else {
       pppm_changes[1,(2*i)-1] = round(nonmember_cost_difference-member_cost_difference,0)
     }
-    if (typeof(spend_summary_table[1,ncol(spend_summary_table)-2*post_period_length+i]) == "character") {
-      pppm_changes[1,(2*i)] = spend_summary_table[1,ncol(spend_summary_table)-2*post_period_length+i]
-    } else { pppm_changes[1,(2*i)] = percent(as.numeric(spend_summary_table[1,ncol(spend_summary_table)-2*post_period_length+i]))}
+    if (typeof(claims_detail_table[1,ncol(claims_detail_table)-2*post_period_length+i]) == "character") {
+      pppm_changes[1,(2*i)] = claims_detail_table[1,ncol(claims_detail_table)-2*post_period_length+i]
+    } else { pppm_changes[1,(2*i)] = percent(as.numeric(claims_detail_table[1,ncol(claims_detail_table)-2*post_period_length+i]))}
 
     # Total Pharmacy Costs
     if (has_rx == T) {
