@@ -7,12 +7,12 @@ read_excel(study,file_name)
 \description{
 Reads all relevant sheets used to generate the ROI PowerPoint from the given ROI workbook specified by file_name. The sheets are:
 \itemize{
-\item ROI - returned as roiSheet
-\item Data summary - returned as dataSummarySheet
-\item Summary stats - returned as summaryStatsSheet
-\item data_overview1 - returned as dataOverviewSheet
-\item Pharmacy costs - returned as pharmacyCostsSheet
-\item PDC - returned as PDCSheet
+\item ROI - returned as ROI_sheet
+\item Data summary - returned as data_summary_sheet
+\item Summary stats - returned as summary_stats_sheet
+\item data_overview1 - returned as data_overview_sheet
+\item Pharmacy costs - returned as pharmacy_costs_sheet
+\item PDC - returned as PDC_sheet
 }
 }
 \arguments{
@@ -23,9 +23,9 @@ Reads all relevant sheets used to generate the ROI PowerPoint from the given ROI
 
 ### Reads in the ROI workbook generated from running a year-over-year
 ### ROI analysis for Aperture Science
-read_excel(YOY,"ApertureScience_2024-01-01_launch_date_YOY_final.xlsm")
+read_excel("YOY","ApertureScience_2024-01-01_launch_date_YOY_final.xlsm")
 
 ### Reads in the ROI workbook generated from running a 2-year
 ### ROI analysis for Los Pollos Hermanos.
-read_excel(2YR,"Los_Pollos_Hermanos_ROI_great_results.xlsm")
+read_excel("2YR","Los_Pollos_Hermanos_ROI_great_results.xlsm")
 }

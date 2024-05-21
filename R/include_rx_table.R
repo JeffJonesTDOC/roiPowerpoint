@@ -3,48 +3,48 @@
 # already-existing spend summary table. It does NOT check for existence
 # of rx data; it already assumes the data is there.
 
-include_rx_table <- function(pooledPharSpendingTable, spendSummaryTable) {
+include_rx_table <- function(pooled_phar_spending_table, spend_summary_table) {
   for (i in c(1,2)) {
-    for (j in 2:ncol(pooledPharSpendingTable)) {
-      if (abs(as.numeric(pooledPharSpendingTable[i,j])) < 1) {
-        pooledPharSpendingTable[i,j] = percent(as.numeric(pooledPharSpendingTable[i,j]))
-      } else {pooledPharSpendingTable[i,j] = round(as.numeric(pooledPharSpendingTable[i,j]),0)}
-      pooledPharSpendingTable[i,j] = gsub("\\$-","-$",pooledPharSpendingTable[i,j])
+    for (j in 2:ncol(pooled_phar_spending_table)) {
+      if (abs(as.numeric(pooled_phar_spending_table[i,j])) < 1) {
+        pooled_phar_spending_table[i,j] = percent(as.numeric(pooled_phar_spending_table[i,j]))
+      } else {pooled_phar_spending_table[i,j] = round(as.numeric(pooled_phar_spending_table[i,j]),0)}
+      pooled_phar_spending_table[i,j] = gsub("\\$-","-$",pooled_phar_spending_table[i,j])
     }
   }
-  pooledPharSpendingTable[,1] = c("Total pharmaceutical costs","Diabetes-related pharmaceutical costs")
-  names(pooledPharSpendingTable) = names(spendSummaryTable)
-  spendSummaryWithPhar = rbind(spendSummaryTable,pooledPharSpendingTable)
-  for (k in 2:ncol(spendSummaryWithPhar)) {
-    if (!is.na(as.numeric(spendSummaryWithPhar[2,k]))) {
-      spendSummaryWithPhar[,k] = paste("$",spendSummaryWithPhar[,k],sep="")
-      spendSummaryWithPhar[,k] = gsub("\\$-","-$",spendSummaryWithPhar[,k])
+  pooled_phar_spending_table[,1] = c("Total pharmaceutical costs","Diabetes-related pharmaceutical costs")
+  names(pooled_phar_spending_table) = names(spend_summary_table)
+  spend_summary_table_with_phar = rbind(spend_summary_table,pooled_phar_spending_table)
+  for (k in 2:ncol(spend_summary_table_with_phar)) {
+    if (!is.na(as.numeric(spend_summary_table_with_phar[2,k]))) {
+      spend_summary_table_with_phar[,k] = paste("$",spend_summary_table_with_phar[,k],sep="")
+      spend_summary_table_with_phar[,k] = gsub("\\$-","-$",spend_summary_table_with_phar[,k])
     }
   }
-  spendSummaryWithPharFT <- flextable::flextable(spendSummaryWithPhar)
-  spendSummaryWithPharFT <- flextable::add_header_row(spendSummaryWithPharFT,values = c(" ","Non-member","Member"," "), colwidths = c(1,2*nYear+1,2*nYear+1,nYear*2))
-  spendSummaryWithPharFT <- flextable::bg(spendSummaryWithPharFT,bg="#66478F",part="header")
-  spendSummaryWithPharFT <- flextable::color(spendSummaryWithPharFT,color="white", part="header")
-  spendSummaryWithPharFT <- flextable::color(spendSummaryWithPharFT,color="white", part="body",j=1)
-  for (i1 in 1:nrow(spendSummaryWithPhar)) {
-    for (j1 in (ncol(spendSummaryWithPhar)-2*nYear+1):ncol(spendSummaryWithPhar)) {
-      if (spendSummaryWithPhar[i1,j1] > 0) {
-        spendSummaryWithPharFT <- flextable::bg(spendSummaryWithPharFT, i=i1, j=j1, bg="#E1DDE5",part="body")
+  spend_summary_table_with_phar_ft <- flextable::flextable(spend_summary_table_with_phar)
+  spend_summary_table_with_phar_ft <- flextable::add_header_row(spend_summary_table_with_phar_ft,values = c(" ","Non-member","Member"," "), colwidths = c(1,2*nYear+1,2*nYear+1,nYear*2))
+  spend_summary_table_with_phar_ft <- flextable::bg(spend_summary_table_with_phar_ft,bg="#66478F",part="header")
+  spend_summary_table_with_phar_ft <- flextable::color(spend_summary_table_with_phar_ft,color="white", part="header")
+  spend_summary_table_with_phar_ft <- flextable::color(spend_summary_table_with_phar_ft,color="white", part="body",j=1)
+  for (i1 in 1:nrow(spend_summary_table_with_phar)) {
+    for (j1 in (ncol(spend_summary_table_with_phar)-2*nYear+1):ncol(spend_summary_table_with_phar)) {
+      if (spend_summary_table_with_phar[i1,j1] > 0) {
+        spend_summary_table_with_phar_ft <- flextable::bg(spend_summary_table_with_phar_ft, i=i1, j=j1, bg="#E1DDE5",part="body")
       } else {
-        spendSummaryWithPharFT <- flextable::bg(spendSummaryWithPharFT, i=i1, j=j1, bg="#c6efcd",part="body")
+        spend_summary_table_with_phar_ft <- flextable::bg(spend_summary_table_with_phar_ft, i=i1, j=j1, bg="#c6efcd",part="body")
       }
     }
   }
-  spendSummaryWithPharFT <- flextable::bg(spendSummaryWithPharFT,j=1,bg = "#55437d", part="body")
-  spendSummaryWithPharFT <- flextable::align(spendSummaryWithPharFT,align=c("center"),part="all")
-  spendSummaryWithPharFT <- flextable::width(spendSummaryWithPharFT,j=1,width=1.5)
-  spendSummaryWithPharFT <- flextable::width(spendSummaryWithPharFT,j=2:ncol(pooledPharSpendingTable),width=0.5)
-  spendSummaryWithPharFT <- flextable::fontsize(spendSummaryWithPharFT,size=8,part="all")
-  spendSummaryWithPharFT <- flextable::font(spendSummaryWithPharFT,fontname="century gothic",part="all")
-  spendSummaryWithPharFT <- flextable::border_inner(spendSummaryWithPharFT,border=officer::fp_border(color="black",style="solid",width=1),part="all")
-  spendSummaryWithPharFT <- flextable::border_outer(spendSummaryWithPharFT,border=officer::fp_border(color="black",style="solid",width=2),part = "body")
-  spendSummaryWithPharFT <- flextable::border_outer(spendSummaryWithPharFT,border=officer::fp_border(color="black",style="solid",width=2),part = "all")
-  spendSummaryWithPharFT <- flextable::hline(spendSummaryWithPharFT,i=nrow(spendSummaryWithPhar)-2,border=officer::fp_border(color="black",style="solid",width=3))
+  spend_summary_table_with_phar_ft <- flextable::bg(spend_summary_table_with_phar_ft,j=1,bg = "#55437d", part="body")
+  spend_summary_table_with_phar_ft <- flextable::align(spend_summary_table_with_phar_ft,align=c("center"),part="all")
+  spend_summary_table_with_phar_ft <- flextable::width(spend_summary_table_with_phar_ft,j=1,width=1.5)
+  spend_summary_table_with_phar_ft <- flextable::width(spend_summary_table_with_phar_ft,j=2:ncol(pooled_phar_spending_table),width=0.5)
+  spend_summary_table_with_phar_ft <- flextable::fontsize(spend_summary_table_with_phar_ft,size=8,part="all")
+  spend_summary_table_with_phar_ft <- flextable::font(spend_summary_table_with_phar_ft,fontname="century gothic",part="all")
+  spend_summary_table_with_phar_ft <- flextable::border_inner(spend_summary_table_with_phar_ft,border=officer::fp_border(color="black",style="solid",width=1),part="all")
+  spend_summary_table_with_phar_ft <- flextable::border_outer(spend_summary_table_with_phar_ft,border=officer::fp_border(color="black",style="solid",width=2),part = "body")
+  spend_summary_table_with_phar_ft <- flextable::border_outer(spend_summary_table_with_phar_ft,border=officer::fp_border(color="black",style="solid",width=2),part = "all")
+  spend_summary_table_with_phar_ft <- flextable::hline(spend_summary_table_with_phar_ft,i=nrow(spend_summary_table_with_phar)-2,border=officer::fp_border(color="black",style="solid",width=3))
 
-  return(spendSummaryWithPharFT)
+  return(spend_summary_table_with_phar_ft)
 }
