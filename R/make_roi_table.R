@@ -73,7 +73,7 @@ make_roi_table <- function(has_rx, nYear, program, final_cohort_size,price_of_pr
     roi_flextable <- flextable::fontsize(roi_flextable,size=9,part="all")
     roi_flextable <- flextable::font(roi_flextable,fontname = "century gothic",part="all")
   }
-  returnList = list(roi_flextable,executive_summary_roi_array,no_rx_roi_array,rx_roi_array,diabetes_rx_roi_array,ROI,final_roi_table,roi_flextable)
-  names(returnList) = c("roi_flextable","executive_summary_roi_array","no_rx_roi_array","rx_roi_array","diabetes_rx_roi_array","ROI","final_roi_table","roi_flextable")
+  returnList = list(roi_flextable,executive_summary_roi_array,no_rx_roi_array,rx_roi_array,diabetes_rx_roi_array,ROI,final_roi_table)
+  names(returnList) = c("roi_flextable","executive_summary_roi_array","no_rx_roi_array","rx_roi_array","diabetes_rx_roi_array","ROI","final_roi_table")
   return(returnList)
 }
