@@ -1,0 +1,8 @@
+- Created helper documents for extract_phar_table(), extract_pppm_changes(), and extract_sheet_data()
+
+- Renamed nYear to post_period_length
+- Renamed lvgoPrice to price_of_program
+- Renamed minEnrollmentLength to min_activation_length
+- Renamed attritionNCount to final_cohort_size
+
+Converted all camelCase variables to snake_case variables

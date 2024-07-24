@@ -1,12 +1,25 @@
 #exportPattern("^[[:alpha:]]+")
+export(add_slide_additional_methodology) #
+export(add_slide_attrition_tables) #
+export(add_slide_exec_summary) #
+export(add_slide_graph_results)
+export(add_slide_methodology)
+export(add_slide_pooled_cohorts) #
+export(add_slide_program_title) #
+export(add_slide_spend_summary_table) #
+export(add_slide_title) #
+export(extract_claims_detail_table)
 export(extract_phar_table)
 export(extract_pppm_changes)
 export(extract_sheet_data)
-export(extract_claims_detail_table)
+export(get_pptx_template)
 export(include_rx_table)
 export(make_attrition_table)
 export(make_did_table)
 export(make_pooled_cohort_tables)
+export(make_roi_graph_and_table)
 export(make_roi_table)
 export(read_excel)
+export(int_breaks)
+export(test_function)
 

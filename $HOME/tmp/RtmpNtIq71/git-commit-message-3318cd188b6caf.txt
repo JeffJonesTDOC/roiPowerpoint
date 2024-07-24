@@ -1,0 +1,2 @@
+- Added documentation for include_rx_table(), make_pooled_cohort_tables(), and make_roi_table()
+

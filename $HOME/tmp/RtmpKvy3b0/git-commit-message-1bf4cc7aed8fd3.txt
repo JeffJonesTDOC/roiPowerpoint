@@ -1,0 +1,3 @@
+-Created the extract_claims_detail_table() documentation.
+
+-Replaced all instances of "spend_summary" with "claims_detail", for clarity.

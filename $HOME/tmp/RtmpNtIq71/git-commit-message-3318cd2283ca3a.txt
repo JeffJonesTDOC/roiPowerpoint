@@ -1,0 +1,4 @@
+- Modified NAMESPACE from export(extract_summary_spending_table) to export(extract_claims_detail_table)
+
+-Removed helper function for "hello()".
+

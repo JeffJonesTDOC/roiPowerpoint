@@ -1,5 +1,5 @@
-\name{make_pooled_cohort_tables()}
-\alias{make_pooled_cohort_tables()}
+\name{make_pooled_cohort_tables}
+\alias{make_pooled_cohort_tables}
 \title{Generates Two Pooled Cohort Tables}
 \usage{
 make_pooled_cohort_tables(post_period_length,
