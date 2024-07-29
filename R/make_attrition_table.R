@@ -2,7 +2,7 @@
 # are returned as flextable objects.
 
 
-make_attrition_table <- function(post_period_length,summary_stats_sheet,min_activation_length,population_conditions,study_start_date) {
+make_attrition_table <- function(post_period_length,program,summary_stats_sheet,min_activation_length,population_conditions,study_start_date) {
 
   # Initialize a few arrays that are population in the following for loop.
   final_cohort_size = array(dim=post_period_length)
