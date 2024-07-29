@@ -3,28 +3,28 @@
 # year 1 and year 0, minimum enrollment length (3, 6, or 9 months), client name, and supply cost (for DM).
 #
 
-extract_sheet_data <- function(ROI_sheet, program, study, data_summary_sheet, data_overview_sheet,HTN_population) {
+extract_sheet_data <- function(roi_sheet, program, study, data_summary_sheet, data_overview_sheet,HTN_population) {
   # Extract the price of livongo before modifying the file in some cases.
-  price_of_program = round(as.numeric(ROI_sheet[which(ROI_sheet[,1] == 'Price of Livongo'),3][1]),0)
+  price_of_program = round(as.numeric(roi_sheet[which(roi_sheet[,1] == 'Price of Livongo'),3][1]),0)
 
   # Modify the sheets for some oddball cases involving Hypertension
   {
     if (program=="Hypertension") {
       if (study == "2YR" | study == "3YR" | study == "4YR") {
-        if (HTN_population == "All") {ROI_sheet=ROI_sheet[1:which(ROI_sheet[,1]=="DMHTN"),]}
-        if (HTN_population == "HTN & DM") {ROI_sheet=ROI_sheet[(which(ROI_sheet[,1]=="DMHTN")+3):which(ROI_sheet[,1]=="HTN only"),]}
-        if (HTN_population == "HTN only") {ROI_sheet=ROI_sheet[(which(ROI_sheet[,1]=="HTN only")+3):nrow(ROI_sheet),]}
+        if (HTN_population == "All") {roi_sheet=roi_sheet[1:which(roi_sheet[,1]=="DMHTN"),]}
+        if (HTN_population == "HTN & DM") {roi_sheet=roi_sheet[(which(roi_sheet[,1]=="DMHTN")+3):which(roi_sheet[,1]=="HTN only"),]}
+        if (HTN_population == "HTN only") {roi_sheet=roi_sheet[(which(roi_sheet[,1]=="HTN only")+3):nrow(roi_sheet),]}
       }
       if (study == "YOY" | study == "1YR") {
         if (HTN_population == "HTN & DM") {
-          ROI_sheet[1:7,] = ROI_sheet[21:27,]
-          spend_table_to_use = ROI_sheet[which(ROI_sheet[,15]=="Total costs")[1]:which(ROI_sheet[,15]=="Office visits")[1],15:24]
-          ROI_sheet[which(ROI_sheet[,2]=="Total costs")[1]:which(ROI_sheet[,2]=="Office visits")[1],2:11] = spend_table_to_use
+          roi_sheet[1:7,] = roi_sheet[21:27,]
+          spend_table_to_use = roi_sheet[which(roi_sheet[,15]=="Total costs")[1]:which(roi_sheet[,15]=="Office visits")[1],15:24]
+          roi_sheet[which(roi_sheet[,2]=="Total costs")[1]:which(roi_sheet[,2]=="Office visits")[1],2:11] = spend_table_to_use
         }
         if (HTN_population == "HTN only") {
-          ROI_sheet[1:7,] = ROI_sheet[41:47,]
-          spend_table_to_use = ROI_sheet[which(ROI_sheet[,28]=="Total costs")[1]:which(ROI_sheet[,28]=="Office visits")[1],28:37]
-          ROI_sheet[which(ROI_sheet[,2]=="Total costs")[1]:which(ROI_sheet[,2]=="Office visits")[1],2:11] = spend_table_to_use
+          roi_sheet[1:7,] = roi_sheet[41:47,]
+          spend_table_to_use = roi_sheet[which(roi_sheet[,28]=="Total costs")[1]:which(roi_sheet[,28]=="Office visits")[1],28:37]
+          roi_sheet[which(roi_sheet[,2]=="Total costs")[1]:which(roi_sheet[,2]=="Office visits")[1],2:11] = spend_table_to_use
         }
       }
     }
@@ -73,13 +73,13 @@ extract_sheet_data <- function(ROI_sheet, program, study, data_summary_sheet, da
 
     ##### supply cost extract #####
     if (program == "Diabetes") {
-      supply_cost = ROI_sheet[which(grepl("Diabetes Supplies Cost",ROI_sheet[,1])),2][1]
+      supply_cost = roi_sheet[which(grepl("Diabetes Supplies Cost",roi_sheet[,1])),2][1]
       if (supply_cost == "0" || is.na(supply_cost)) {supply_cost = "30"}
     } else if (program == "Hypertension") {
       supply_cost = "0"
     }
   }
 
-  return(list(price_of_program = price_of_program,ROI_sheet = ROI_sheet, post_period_length = post_period_length,study_start_date = study_start_date, study_launch_date = study_launch_date, year1 = year1, year0 = year0, min_activation_length = min_activation_length,client_name = client_name,supply_cost = supply_cost))
+  return(list(price_of_program = price_of_program,roi_sheet = roi_sheet, post_period_length = post_period_length,study_start_date = study_start_date, study_launch_date = study_launch_date, year1 = year1, year0 = year0, min_activation_length = min_activation_length,client_name = client_name,supply_cost = supply_cost))
 
 }
