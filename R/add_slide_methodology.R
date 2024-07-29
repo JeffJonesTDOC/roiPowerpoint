@@ -1,10 +1,10 @@
-add_slide_methodology <- function(ppt, nYear, format1, format2, population_conditions, data_overview_sheet, study_time_period_launch_date, year0) {
+add_slide_methodology <- function(ppt, post_period_length, format1 = centurygothic12, format2 = centurygothic16bold, population_conditions, data_overview_sheet, study_time_period_launch_date, year0) {
   # Approach Text
   {
     approachTextYearArray=array()
-    for(i in 1:nYear) {
-      if (i != nYear) {approachTextYearArray= append(approachTextYearArray,paste("Year ",i,", ",sep=""))}
-      if (i == nYear) {approachTextYearArray=na.omit(append(approachTextYearArray,paste("Year ",i,sep="")))}
+    for(i in 1:post_period_length) {
+      if (i != post_period_length) {approachTextYearArray= append(approachTextYearArray,paste("Year ",i,", ",sep=""))}
+      if (i == post_period_length) {approachTextYearArray=na.omit(append(approachTextYearArray,paste("Year ",i,sep="")))}
     }
     approachText <- officer::fpar(officer::ftext(paste0("Difference-in-difference (DID) comparison of total allowed amount of medical spending (PMPM) one year prior to index date (Year 0) compared to year(s) following index date (",paste(approachTextYearArray,collapse=""),") for members vs. non-members.")
                                                  ,centurygothic12)) # format1
@@ -67,14 +67,14 @@ add_slide_methodology <- function(ppt, nYear, format1, format2, population_condi
 
   # Study Time Period Text
   {
-    studyTimePeriodArray = array(dim=nYear+2)
-    studyTimePeriodArray[1] = paste("Study Index Date:",str_replace_all(sheet_data_extract$studyTimePeriodLaunchDate,"-","/"))
+    studyTimePeriodArray = array(dim=post_period_length+2)
+    studyTimePeriodArray[1] = paste("Study Index Date:",str_replace_all(study_time_period_launch_date,"-","/"))
     if (as.numeric(year0) %% 4 != 0) {
-      studyTimePeriodArray[2] = paste("\nPre-Period, Year 0:",str_replace_all(sheet_data_extract$studyTimePeriodLaunchDate-365,"-","/"),"-",str_replace_all(as.Date(sheet_data_extract$studyTimePeriodLaunchDate)-1,"-","/"))
+      studyTimePeriodArray[2] = paste("\nPre-Period, Year 0:",str_replace_all(study_time_period_launch_date-365,"-","/"),"-",str_replace_all(as.Date(study_time_period_launch_date)-1,"-","/"))
     } else {
-      studyTimePeriodArray[2] = paste("\nPre-Period, Year 0:",str_replace_all(sheet_data_extract$studyTimePeriodLaunchDate-366,"-","/"),"-",str_replace_all(as.Date(sheet_data_extract$studyTimePeriodLaunchDate)-1,"-","/"))
+      studyTimePeriodArray[2] = paste("\nPre-Period, Year 0:",str_replace_all(study_time_period_launch_date-366,"-","/"),"-",str_replace_all(as.Date(study_time_period_launch_date)-1,"-","/"))
     }
-    for (i in 3:(nYear+2)) {
+    for (i in 3:(post_period_length+2)) {
       studyTimePeriodArray[i] = paste("\nPost-Period, Year ",(i-2),": ",as.numeric(year0)+(i-2),"/01/01 - ",as.numeric(year0)+(i-2),"/12/31",sep="")
     }
 
