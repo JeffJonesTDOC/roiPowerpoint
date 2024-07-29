@@ -141,9 +141,18 @@ make_attrition_table <- function(post_period_length,program,summary_stats_sheet,
     assign(paste("attrition_table_y",l,sep=""),ft)
   }
 
-  if (post_period_length == 1) return(list(risk_score_array, age_array, member_cohort_array,nonmember_cohort_array, final_cohort_size, attrition_table_y1))
-  if (post_period_length == 2) return(list(risk_score_array, age_array, member_cohort_array,nonmember_cohort_array, final_cohort_size, attrition_table_y1, attrition_table_y2))
-  if (post_period_length == 3) return(list(risk_score_array, age_array, member_cohort_array,nonmember_cohort_array, final_cohort_size, attrition_table_y1, attrition_table_y2, attrition_table_y3))
-  if (post_period_length == 4) return(list(risk_score_array, age_array, member_cohort_array,nonmember_cohort_array, final_cohort_size, attrition_table_y1, attrition_table_y2, attrition_table_y3, attrition_table_y4))
-
+  if (post_period_length == 1) {
+    return_list = list(risk_score_array, age_array, member_cohort_array,nonmember_cohort_array, final_cohort_size, attrition_table_y1)
+    names(return_list) = c("risk_score_array","age_array","member_cohort_array","nonmember_cohort_array","final_cohort_size","attrition_table_y1")
+  } else if (post_period_length == 2) {
+    return_list = list(risk_score_array, age_array, member_cohort_array,nonmember_cohort_array, final_cohort_size, attrition_table_y1, attrition_table_y2)
+    names(return_list) = c("risk_score_array","age_array","member_cohort_array","nonmember_cohort_array","final_cohort_size","attrition_table_y1","attrition_table_y2")
+  } else if (post_period_length == 3) {
+    return_list = list(risk_score_array, age_array, member_cohort_array,nonmember_cohort_array, final_cohort_size, attrition_table_y1, attrition_table_y2,attrition_table_y3)
+    names(return_list) = c("risk_score_array","age_array","member_cohort_array","nonmember_cohort_array","final_cohort_size","attrition_table_y1","attrition_table_y2","attrition_table_y3")
+  } else if (post_period_length == 4) {
+    return_list = list(risk_score_array, age_array, member_cohort_array,nonmember_cohort_array, final_cohort_size, attrition_table_y1, attrition_table_y2,attrition_table_y3,attrition_table_y4)
+    names(return_list) = c("risk_score_array","age_array","member_cohort_array","nonmember_cohort_array","final_cohort_size","attrition_table_y1","attrition_table_y2","attrition_table_y3","attrition_table_y4")
+  }
+return(return_list)
 }
