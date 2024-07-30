@@ -1,43 +1,43 @@
 # Generates the overall claims spending graph for members (Actual), members (Expected), and non-members.
 # Also generates the table showcasing ROI results.
 
-make_roi_graph_and_table <- function(roiSheet,study,program,has_rx,zero_yaxis,year0,year1,nYear) {
-  if (length(which(roiSheet[1,] == "Year 0") > 1) || study =="YOY") {graphIndex = 1} else {graphIndex = 2}
+make_roi_graph_and_table <- function(roi_sheet,study,program,has_rx,zero_yaxis,year0,year1,post_period_length) {
+  if (length(which(roi_sheet[1,] == "Year 0") > 1) || study =="YOY") {graphIndex = 1} else {graphIndex = 2}
   if (program == "Diabetes") {
     if (study == "1YR" | study == "YOY") {
       if (has_rx) {
-        graphDataRaw = as.data.frame(t(roiSheet[graphIndex:(graphIndex+4),16:18]))
-        if (all(is.na(graphDataRaw[1,]))) {graphDataRaw = as.data.frame(t(roiSheet[graphIndex:(graphIndex+4),17:19]))}
+        graphDataRaw = as.data.frame(t(roi_sheet[graphIndex:(graphIndex+4),16:18]))
+        if (all(is.na(graphDataRaw[1,]))) {graphDataRaw = as.data.frame(t(roi_sheet[graphIndex:(graphIndex+4),17:19]))}
       } else {
-        graphDataRaw = as.data.frame(t(roiSheet[graphIndex:(graphIndex+4),1:3]))
-        if (all(is.na(graphDataRaw[1,]))) {graphDataRaw = as.data.frame(t(roiSheet[graphIndex:(graphIndex+4),2:4]))}
+        graphDataRaw = as.data.frame(t(roi_sheet[graphIndex:(graphIndex+4),1:3]))
+        if (all(is.na(graphDataRaw[1,]))) {graphDataRaw = as.data.frame(t(roi_sheet[graphIndex:(graphIndex+4),2:4]))}
 
       }
     } else if (study == "2YR") {
       if (has_rx) {
-        graphDataRaw = as.data.frame(t(roiSheet[graphIndex:(graphIndex+4),(which(colnames(roiSheet)=="Total")+1):((which(colnames(roiSheet)=="Total")+1)+3)]))
+        graphDataRaw = as.data.frame(t(roi_sheet[graphIndex:(graphIndex+4),(which(colnames(roi_sheet)=="Total")+1):((which(colnames(roi_sheet)=="Total")+1)+3)]))
       } else {
-        graphDataRaw = as.data.frame(t(roiSheet[graphIndex:(graphIndex+4),which(colnames(roiSheet)=="Combined.Result"):(which(colnames(roiSheet)=="Combined.Result")+3)]))
+        graphDataRaw = as.data.frame(t(roi_sheet[graphIndex:(graphIndex+4),which(colnames(roi_sheet)=="Combined.Result"):(which(colnames(roi_sheet)=="Combined.Result")+3)]))
       }
     } else if (study == "3YR") {
-      graphDataRaw = as.data.frame(t(roiSheet[(which(roiSheet[,1]=="pooled 3 year")+1):(which(roiSheet[,1]=="pooled 3 year")+4),8:(8+nYear+1)]))
+      graphDataRaw = as.data.frame(t(roi_sheet[(which(roi_sheet[,1]=="pooled 3 year")+1):(which(roi_sheet[,1]=="pooled 3 year")+4),8:(8+post_period_length+1)]))
     } else if (study == "4YR") {
-      graphDataRaw = as.data.frame(t(roiSheet[(which(roiSheet[,1]=="pooled 4 year")+1):(which(roiSheet[,1]=="pooled 4 year")+4),8:(8+nYear+1)]))
+      graphDataRaw = as.data.frame(t(roi_sheet[(which(roi_sheet[,1]=="pooled 4 year")+1):(which(roi_sheet[,1]=="pooled 4 year")+4),8:(8+post_period_length+1)]))
     }
   }
   if (program == "Hypertension") {
     if (study == "1YR" | study == "YOY") {
-      graphDataRaw = as.data.frame(t(roiSheet[graphIndex:(graphIndex+4),25:28]))
+      graphDataRaw = as.data.frame(t(roi_sheet[graphIndex:(graphIndex+4),25:28]))
     } else if (study == "2YR") {
       if (has_rx) {
-        graphDataRaw = as.data.frame(t(roiSheet[graphIndex:(graphIndex+4),(which(colnames(roiSheet)=="Total")+1):((which(colnames(roiSheet)=="Total")+1)+3)]))
+        graphDataRaw = as.data.frame(t(roi_sheet[graphIndex:(graphIndex+4),(which(colnames(roi_sheet)=="Total")+1):((which(colnames(roi_sheet)=="Total")+1)+3)]))
       } else {
-        graphDataRaw = as.data.frame(t(roiSheet[graphIndex:(graphIndex+4),which(colnames(roiSheet)=="Combined.Result"):(which(colnames(roiSheet)=="Combined.Result")+3)]))
+        graphDataRaw = as.data.frame(t(roi_sheet[graphIndex:(graphIndex+4),which(colnames(roi_sheet)=="Combined.Result"):(which(colnames(roi_sheet)=="Combined.Result")+3)]))
       }
     } else if (study == "3YR") {
-      graphDataRaw = as.data.frame(t(roiSheet[(which(roiSheet[,1]=="pooled 3 year")+1):(which(roiSheet[,1]=="pooled 3 year")+4),8:(8+nYear+1)]))
+      graphDataRaw = as.data.frame(t(roi_sheet[(which(roi_sheet[,1]=="pooled 3 year")+1):(which(roi_sheet[,1]=="pooled 3 year")+4),8:(8+post_period_length+1)]))
     } else if (study == "4YR") {
-      graphDataRaw = as.data.frame(t(roiSheet[(which(roiSheet[,1]=="pooled 4 year")+1):(which(roiSheet[,1]=="pooled 3 year")+4),8:(8+nYear+1)]))
+      graphDataRaw = as.data.frame(t(roi_sheet[(which(roi_sheet[,1]=="pooled 4 year")+1):(which(roi_sheet[,1]=="pooled 3 year")+4),8:(8+post_period_length+1)]))
     }
   }
   if (all(is.na(graphDataRaw[,1]))) {graphDataRaw = graphDataRaw[,-c(1)]}
@@ -61,7 +61,7 @@ make_roi_graph_and_table <- function(roiSheet,study,program,has_rx,zero_yaxis,ye
     if (study == "YOY")
     {
       graphDataFull$Labels = rep(c(year0,year1),3)
-    } else {graphDataFull$Labels = rep(paste("Year",seq(0,nYear)),3)}
+    } else {graphDataFull$Labels = rep(paste("Year",seq(0,post_period_length)),3)}
   }
   #Come up with a better solution for the above code. For now, just make it work.
 
@@ -73,7 +73,7 @@ make_roi_graph_and_table <- function(roiSheet,study,program,has_rx,zero_yaxis,ye
     scale_linetype_manual(values=c("dashed","dotted","solid")) +
     geom_line(aes(linetype=Group)) +
     ggtitle(labs(title = graphTitle)) +
-    scale_x_continuous(breaks = c(seq(as.numeric(year0),as.numeric(year0)+nYear)),labels = c(sort(unique(graphDataFull$Labels)))) +
+    scale_x_continuous(breaks = c(seq(as.numeric(year0),as.numeric(year0)+post_period_length)),labels = c(sort(unique(graphDataFull$Labels)))) +
     scale_color_manual(values=c("purple","purple","blue")) +
     ylim(axisStart,1.1*max(graphDataFull$Data)) +
     theme(legend.position=c(0.5,0.1),
@@ -86,7 +86,7 @@ make_roi_graph_and_table <- function(roiSheet,study,program,has_rx,zero_yaxis,ye
   for (i in 2:ncol(graphDataModified)) {
     graphDataModified[2:4,i] = paste("$",round(as.numeric(graphDataModified[2:4,i],0)),sep="")
   }
-  if (nYear == 1) {graphDataModified[1,2] = gsub("Year 0",year0,graphDataModified[1,2]); graphDataModified[1,3] = gsub("Year 1",year1,graphDataModified[1,3]); }
+  if (post_period_length == 1) {graphDataModified[1,2] = gsub("Year 0",year0,graphDataModified[1,2]); graphDataModified[1,3] = gsub("Year 1",year1,graphDataModified[1,3]); }
   graphDataFlexTable <- flextable::flextable(as.data.frame(graphDataModified))
   graphDataFlexTable <- flextable::delete_part(graphDataFlexTable,part="header")
   graphDataFlexTable <- flextable::bold(graphDataFlexTable,j=1,part="body")
