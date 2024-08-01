@@ -1,4 +1,4 @@
-extract_claims_detail_table <- function(post_period_length, ROI_sheet,combine_ip_op,year0,remove_POS,HTN_population) {
+extract_claims_detail_table <- function(post_period_length, roi_sheet, year0, remove_POS, HTN_population = "All", combine_ip_op = FALSE) {
   suppressWarnings({
 
     if(typeof(year0) != "character") {year0 = as.character(year0)}
@@ -13,8 +13,8 @@ extract_claims_detail_table <- function(post_period_length, ROI_sheet,combine_ip
     if (post_period_length == 2 && program=="Hypertension") {
       roi_table_column_index = 15
     } else {roi_table_column_index = 1}
-    while (roi_table_column_index < ncol(ROI_sheet)) {
-      roi_table_row_index = which(ROI_sheet[,roi_table_column_index]==table_string_match)
+    while (roi_table_column_index < ncol(roi_sheet)) {
+      roi_table_row_index = which(roi_sheet[,roi_table_column_index]==table_string_match)
       if (length(roi_table_row_index) > 1) {roi_table_row_index = roi_table_row_index[1];break}
       else if (length(roi_table_row_index) == 1) {break}
       else {roi_table_column_index = roi_table_column_index+1}
@@ -24,7 +24,7 @@ extract_claims_detail_table <- function(post_period_length, ROI_sheet,combine_ip
     {
       total_cost_index = roi_table_row_index
       while (total_cost_index<roi_table_row_index+50) {
-        total_cost_check = ROI_sheet[total_cost_index,roi_table_column_index]
+        total_cost_check = roi_sheet[total_cost_index,roi_table_column_index]
         if (is.na(total_cost_check)) {
           total_cost_index=total_cost_index+1
         } else if (total_cost_check == "Total costs") {
@@ -34,7 +34,7 @@ extract_claims_detail_table <- function(post_period_length, ROI_sheet,combine_ip
 
       pcp_index = roi_table_row_index
       while (pcp_index<roi_table_row_index+50) {
-        pcp_check = ROI_sheet[pcp_index,roi_table_column_index]
+        pcp_check = roi_sheet[pcp_index,roi_table_column_index]
         if (is.na(pcp_check)) {
           pcp_index=pcp_index+1
         } else if (pcp_check == "PCP") {
@@ -43,7 +43,7 @@ extract_claims_detail_table <- function(post_period_length, ROI_sheet,combine_ip
       }
     }
 
-    claims_detail_table = ROI_sheet[total_cost_index:pcp_index,roi_table_column_index:(roi_table_column_index+(7+5*(post_period_length-1)))]
+    claims_detail_table = roi_sheet[total_cost_index:pcp_index,roi_table_column_index:(roi_table_column_index+(7+5*(post_period_length-1)))]
     claims_detail_table[is.na(claims_detail_table)] <- 0;
 
 
