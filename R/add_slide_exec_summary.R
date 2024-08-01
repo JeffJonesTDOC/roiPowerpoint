@@ -8,9 +8,9 @@ add_slide_exec_summary <- function(ppt, has_rx, post_period_length, pmpm_phar_ta
     # Define the text within the ROI box
     text_box_changes = array(dim=post_period_length)
     if (has_rx) {
-      text_box_changes[i] = pmpm_phar_tables$PMPM_changes[1,(2*i)-1] + pmpm_phar_tables$PMPM_changes[2,(2*i)-1]
+      text_box_changes[i] = pmpm_phar_tables[1,(2*i)-1] + pmpm_phar_tables[2,(2*i)-1]
     } else {
-      text_box_changes[i] = pmpm_phar_tables$PMPM_changes[1,(2*i)-1]
+      text_box_changes[i] = pmpm_phar_tables[1,(2*i)-1]
     }
     if (program == "Hypertension") {
       if (post_period_length == 1) slide2DMft1Text <- paste0("HTN ",year1,":\n$",text_box_changes[i]," PPPM\n",roi_table$executiveSummaryRoiArray[i],"x ROI")
