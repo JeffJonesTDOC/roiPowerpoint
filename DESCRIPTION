@@ -1,7 +1,7 @@
 Package: roiPowerpoint
 Type: Package
 Title: Generate PowerPoint Decks from ROI Workbooks
-Version: 0.2
+Version: 0.5
 Author: Jeffrey Jones
 Maintainer: <jeff.jones@teladochealth.com>
 Description: Extracts information from a given ROI workbook. Provided it is formatted correctly (as of 05/08/2024) various information is extracted and formatted into tables, graphs, charts, and bulletpoints.
