@@ -3,7 +3,7 @@
 # already-existing spend summary table. It does NOT check for existence
 # of rx data; it already assumes the data is there.
 
-include_rx_table <- function(pooled_phar_spending_table, claims_detail_table) {
+include_rx_table <- function(post_period_length, pooled_phar_spending_table, claims_detail_table) {
   for (i in c(1,2)) {
     for (j in 2:ncol(pooled_phar_spending_table)) {
       if (abs(as.numeric(pooled_phar_spending_table[i,j])) < 1) {

@@ -9,8 +9,9 @@ Only use this function when the ROI analysis also includes pharmaceutical data. 
 }
 \arguments{
 \itemize{
+  \item{post_period_length}{The number of years of the ROI analysis (post-period). For year-over-year, set to 1. For a two-year analysis (with 2 cohorts), set to 2, and et cetera.}
   \item{pooled_phar_spending_table}{The pooled spending table of total and condition-related pharmaceutical costs. It is returned by extract_phar_table.}
-  \item{claims_detail_table}{The spending table of various condition-related and POS claims. It is returned by extract_claims_detail_table..}
+  \item{claims_detail_table}{The spending table of various condition-related and POS claims. It is returned by extract_claims_detail_table.}
 }
 \examples{
 include_rx_table(pooled_phar_spending_table = pmpm_phar_tables$pooled_phar_spending_table, claims_detail_table = claims_detail$table)
