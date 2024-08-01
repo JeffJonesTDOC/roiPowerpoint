@@ -22,12 +22,12 @@ include_rx_table <- function(pooled_phar_spending_table, claims_detail_table) {
     }
   }
   claims_detail_table_with_phar_ft <- flextable::flextable(claims_detail_table_with_phar)
-  claims_detail_table_with_phar_ft <- flextable::add_header_row(claims_detail_table_with_phar_ft,values = c(" ","Non-member","Member"," "), colwidths = c(1,2*nYear+1,2*nYear+1,nYear*2))
+  claims_detail_table_with_phar_ft <- flextable::add_header_row(claims_detail_table_with_phar_ft,values = c(" ","Non-member","Member"," "), colwidths = c(1,2*post_period_length+1,2*post_period_length+1,post_period_length*2))
   claims_detail_table_with_phar_ft <- flextable::bg(claims_detail_table_with_phar_ft,bg="#66478F",part="header")
   claims_detail_table_with_phar_ft <- flextable::color(claims_detail_table_with_phar_ft,color="white", part="header")
   claims_detail_table_with_phar_ft <- flextable::color(claims_detail_table_with_phar_ft,color="white", part="body",j=1)
   for (i1 in 1:nrow(claims_detail_table_with_phar)) {
-    for (j1 in (ncol(claims_detail_table_with_phar)-2*nYear+1):ncol(claims_detail_table_with_phar)) {
+    for (j1 in (ncol(claims_detail_table_with_phar)-2*post_period_length+1):ncol(claims_detail_table_with_phar)) {
       if (claims_detail_table_with_phar[i1,j1] > 0) {
         claims_detail_table_with_phar_ft <- flextable::bg(claims_detail_table_with_phar_ft, i=i1, j=j1, bg="#E1DDE5",part="body")
       } else {
