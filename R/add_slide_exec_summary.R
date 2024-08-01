@@ -13,12 +13,12 @@ add_slide_exec_summary <- function(ppt, has_rx, post_period_length, pmpm_phar_ta
       text_box_changes[i] = pmpm_phar_tables[1,(2*i)-1]
     }
     if (program == "Hypertension") {
-      if (post_period_length == 1) slide2DMft1Text <- paste0("HTN ",as.character(as.numeric(sheet_data$year0)+ 1),":\n$",text_box_changes[i]," PPPM\n",roi_table$executiveSummaryRoiArray[i],"x ROI")
-      if (post_period_length > 1) slide2DMft1Text <- paste0("HTN Year ",i,":\n$",text_box_changes[i]," PPPM\n",roi_table$executiveSummaryRoiArray[i],"x ROI")
+      if (post_period_length == 1) slide2DMft1Text <- paste0("HTN ",as.character(as.numeric(sheet_data$year0)+ 1),":\n$",text_box_changes[i]," PPPM\n",roi_table$executive_summary_roi_array[i],"x ROI")
+      if (post_period_length > 1) slide2DMft1Text <- paste0("HTN Year ",i,":\n$",text_box_changes[i]," PPPM\n",roi_table$executive_summary_roi_array[i],"x ROI")
 
     } else if (program == "Diabetes") {
-      if (post_period_length == 1) slide2DMft1Text <- paste0("DM ",as.character(as.numeric(sheet_data$year0)+ 1),":\n$",text_box_changes[i]," PPPM\n",roi_table$executiveSummaryRoiArray[i],"x ROI")
-      if (post_period_length > 1) slide2DMft1Text <- paste0("DM Year ",i,":\n$",text_box_changes[i]," PPPM\n",roi_table$executiveSummaryRoiArray[i],"x ROI")
+      if (post_period_length == 1) slide2DMft1Text <- paste0("DM ",as.character(as.numeric(sheet_data$year0)+ 1),":\n$",text_box_changes[i]," PPPM\n",roi_table$executive_summary_roi_array[i],"x ROI")
+      if (post_period_length > 1) slide2DMft1Text <- paste0("DM Year ",i,":\n$",text_box_changes[i]," PPPM\n",roi_table$executive_summary_roi_array[i],"x ROI")
     }
 
     # Create the ROI box flextable
