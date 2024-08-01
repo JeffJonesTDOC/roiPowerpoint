@@ -15,7 +15,7 @@ Creates the slide containing the PMPM changes line graph, table of ROI results, 
 \item{program}{Program the ROI is analyzing. Diabetes, Hypertension, DPP, etc.}
 \item{supply_cost}{The cost of supplies that is covered by our Diabetes program. Returned by extract_sheet_data().}
 \item{price_of_program}{PPPM cost of program. Returned by extract_sheet_data().}
-\item{text_box}{The flextable object containing detailed ROI calculation. It is returned by create_text_box().}
+\item{roi_calculation_table}{The flextable object containing detailed ROI calculation. It is returned by create_roi_calculation_table().}
 \item{roi_table}{The list object containing various information on ROI results. It is returned using make_roi_table().}
 \item{format1}{Text format used for the title text. Default is Century Gothic font, size 24, purple color.}
 \item{format2}{Text format used for the program and supply costs footer. Default is Century Gothic font, size 8, gray color.}
