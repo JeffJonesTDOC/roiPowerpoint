@@ -22,10 +22,10 @@ add_slide_methodology <- function(ppt, post_period_length, format1 = centurygoth
     } else {pop_criteria = population_conditions}
     criteriaArray = c("Eligible for health benefits for entire study period",
                       "Age < 65",
-                      paste("Members activated in Livongo >",all_sheets$dataOverviewSheet[which(all_sheets$dataOverviewSheet[,1] == "joined_months"),2],"months"),
+                      paste("Members activated in Livongo >",data_overview_sheet[which(data_overview_sheet[,1] == "joined_months"),2],"months"),
                       "Cancer or newly developed severe condition (e.g., stroke, HF)",
                       pop_criteria)
-    CCS_flag = all_sheets$dataOverviewSheet[which(all_sheets$dataOverviewSheet[,1] == "CCS_method"),2]
+    CCS_flag = data_overview_sheet[which(data_overview_sheet[,1] == "CCS_method"),2]
     if (CCS_flag == "Matching, cancer excluded") {
       inclusionCriteria <- officer::block_list(officer::fpar(officer::ftext("Inclusion Criteria (Members & Non-Members):",centurygothic16bold)), #format2
                                                officer::fpar(officer::ftext(criteriaArray[1],centurygothic12)), #format1
@@ -45,8 +45,8 @@ add_slide_methodology <- function(ppt, post_period_length, format1 = centurygoth
 
   # Matching Text
   {
-    matchRatio = all_sheets$dataOverviewSheet$data_overview[which(all_sheets$dataOverviewSheet$X1=="match_ratio")]
-    matchCriteria = str_trim(strsplit(all_sheets$dataOverviewSheet$data_overview[which(all_sheets$dataOverviewSheet$X1=="matching_var_list")],",")[[1]])
+    matchRatio = data_overview_sheet$data_overview[which(data_overview_sheet$X1=="match_ratio")]
+    matchCriteria = str_trim(strsplit(data_overview_sheet$data_overview[which(data_overview_sheet$X1=="matching_var_list")],",")[[1]])
     matchCriteria = str_replace_all(matchCriteria,"female","gender")
     matchCriteria = str_replace_all(matchCriteria,"male","gender")
     matchCriteria = str_replace_all(matchCriteria,"risk_score","Charlson Comorbidity Score")
