@@ -11,8 +11,8 @@ a year-over-year analysis will likely cause errors, as a YOY analysis has only 1
 }
 \arguments{
   \item{post_period_length}{The number of years of the ROI analysis (post-period). For year-over-year, set to 1. For a two-year analysis (with 2 cohorts), set to 2, and et cetera.}
-  \item{claims_detail_table}{The spending table of various condition-related and POS claims. Use extract_claims_detail_table() to generate it.}
-  \item{pooled_phar_spending_table}{The pooled spending table of total and condition-related pharmaceutical costs. Use extract_phar_table() to generate it.}
+  \item{claims_detail_table}{The spending table of various condition-related and POS claims. It is returned by extract_claims_detail_table.}
+  \item{pooled_phar_spending_table}{The pooled spending table of total and condition-related pharmaceutical costs. It is returned by extract_phar_table().}
   \item{year0}{Year 0, or pre-period, of the analysis. Can be specified as an integer or character. It is returned by extract_sheet_data().}
   \item{year1}{Year 1, or first post-period, of the analysis. Can be specified as an integer or character. It is returned by extract_sheet_data().}
   }

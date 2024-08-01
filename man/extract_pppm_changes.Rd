@@ -11,7 +11,7 @@ Extracts and calculates the difference-in-difference PPPM changes for all years 
   \item{has_rx}{Boolean to check if the ROI analysis includes rx claims. If FALSE, the functions returns a NULL object.}
   \item{post_period_length}{The number of years of the ROI analysis (post-period). For year-over-year, set to 1. For a two-year analysis (with 2 cohorts), set to 2, and et cetera.}
   \item{ROI_sheet}{"ROI" or "ROI_pooled" sheet from the relevant Excel workbook. It is returned by read_excel().}
-  \item{claims_detail_table}{The spending table of various condition-related and POS claims. Use extract_claims_detail_table() to generate it.}
+  \item{claims_detail_table}{The spending table of various condition-related and POS claims. It is returned by extract_claims_detail_table.}
   \item{program}{The Teladoc program the analysis is looking at. Set to "Diabetes" or "Hypertension".}
   \item{pharmacy_costs_sheet}{"Pharmacy costs"" sheet from the relevant Excel workbook. It is returned by read_excel().}
 

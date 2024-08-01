@@ -9,8 +9,8 @@ Only use this function when the ROI analysis also includes pharmaceutical data. 
 }
 \arguments{
 \itemize{
-  \item{pooled_phar_spending_table}{The pooled spending table of total and condition-related pharmaceutical costs. Use extract_phar_table() to generate it.}
-  \item{claims_detail_table}{The spending table of various condition-related and POS claims. Use extract_claims_detail_table() to generate it.}
+  \item{pooled_phar_spending_table}{The pooled spending table of total and condition-related pharmaceutical costs. It is returned by extract_phar_table.}
+  \item{claims_detail_table}{The spending table of various condition-related and POS claims. It is returned by extract_claims_detail_table..}
 }
 \examples{
 include_rx_table(pooled_phar_spending_table = pmpm_phar_tables$pooled_phar_spending_table, claims_detail_table = claims_detail$table)
