@@ -13,7 +13,7 @@ Creates and formats the ROI results flextable used in the Result Overview slide 
   \item{program}{The Teladoc program the analysis is looking at. Set to "Diabetes" or "Hypertension".}
   \item{final_cohort_size}{An array of sample size(s) for each cohort of the analysis. Returned by make_attrition_table().}
   \item{price_of_program}{PPPM cost of program. Returned by extract_sheet_data().}
-  \item{PPPM_changes}{A table of PPPM changes for medical costs and rx costs if applicable. Returned by get_pppm_changes().}
+  \item{PPPM_changes}{A table of PPPM changes for medical costs and rx costs if applicable. Returned by extract_pppm_changes().}
   \item{supply_cost}{The cost of supplies that is covered by our Diabetes program. Returned by extract_sheet_data().}
   \item{pooled_cohort_table2}{The pooled sample size for multi-year analyses. For 1-year analyses, the pooled size is simply the cohort size. Returned by make_pooled_cohort_tables().}
 }
