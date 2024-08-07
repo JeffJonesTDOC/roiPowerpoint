@@ -1,4 +1,5 @@
 add_slide_claims_detail_table <- function(ppt, program, claims_detail, format1 = centurygothic8gray) {
+  require(officer)
   ppt <- officer::add_slide(x=ppt, layout = "Blank Layout", master = "Livongo Slide Template 2020 Q3")
   ppt <- officer::ph_with(x=ppt,value=officer::fpar(officer::ftext(paste("Pooled Spending Summary -",program))),location = officer::ph_location_type(type="title"))
   ppt <- officer::ph_with(x=ppt, value = claims_detail$flex_table, location = officer::ph_location(left=0.1,top=1,width = 9.5, height = 3.5))

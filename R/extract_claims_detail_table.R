@@ -1,4 +1,5 @@
 extract_claims_detail_table <- function(post_period_length, roi_sheet, year0, remove_POS, HTN_population = "All", combine_ip_op = FALSE) {
+  require(flextable)
   suppressWarnings({
 
     if(typeof(year0) != "character") {year0 = as.character(year0)}

@@ -3,7 +3,7 @@
 
 
 make_attrition_table <- function(post_period_length,program,summary_stats_sheet,min_activation_length,population_conditions,study_start_date) {
-
+require(flextable)
   # Initialize a few arrays that are population in the following for loop.
   final_cohort_size = array(dim=post_period_length)
   n_activated = array(dim=post_period_length) # n_activated will be used in the result overview savings flextable.

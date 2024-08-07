@@ -1,4 +1,5 @@
 add_slide_pooled_cohorts <- function(ppt, study,format1 = centurygothic24purple, pooled_cohort_tables) {
+  require(officer)
   if (study == "YOY") {
     ppt <- officer::add_slide(x=ppt, layout = "Blank Layout", master = "Livongo Slide Template 2020 Q3")
     ppt <- officer::ph_with(x=ppt,value=officer::fpar(officer::ftext("Diabetes Pooled Cohort",format1)),location = officer::ph_location_type(type="title"))

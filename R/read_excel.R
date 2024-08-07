@@ -3,6 +3,7 @@
 
 
 read_excel <- function(study,file_name) {
+  require(openxlsx)
   tryCatch({
     if (study == "YOY" | study == "1YR" | study=="2YR") {
       roi_sheet = openxlsx::read.xlsx(file_name,sheet="ROI")

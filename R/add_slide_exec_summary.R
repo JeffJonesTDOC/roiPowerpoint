@@ -1,4 +1,6 @@
 add_slide_exec_summary <- function(ppt, has_rx, post_period_length, pmpm_phar_tables, program, year0, roi_table) {
+  require(officer)
+  require(flextable)
   # Create the slide "skeleton".
   if (!has_rx) {ppt <- officer::add_slide(ppt, layout = "Executive Summary No Phar", master = "Livongo Slide Template 2020 Q3")}
   if (has_rx) {ppt <- officer::add_slide(ppt, layout = "Executive Summary Phar", master = "Livongo Slide Template 2020 Q3")}

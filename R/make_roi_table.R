@@ -4,6 +4,7 @@
 
 
 make_roi_table <- function(has_rx, post_period_length, program, final_cohort_size,price_of_program,pppm_changes, supply_cost, pooled_cohort_table2) {
+  require(flextable)
   # Define final_roi_table, which becomes a flextable object, formatted
   # and injected into the powerpoint slide.
   {

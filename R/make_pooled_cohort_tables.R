@@ -2,7 +2,7 @@
 # The first table shows the general structure of how cohort sizes are calculated, and the second table shows the actual data.
 
 make_pooled_cohort_tables <- function(post_period_length,final_cohort_size, summary_stats_sheet, study_start_date) {
-
+require(lubridate)
   # Generate the first table data frame.
   pooled_cohort_table1 = as.data.frame(matrix(nrow=post_period_length,ncol=2+post_period_length))
   names_table1 = c("Cohorts","Activation Timeframe")

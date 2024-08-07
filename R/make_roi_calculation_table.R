@@ -1,4 +1,5 @@
 make_roi_calculation_table <- function(roi_table,has_rx, program) {
+  require(flextable)
   if (!has_rx) {
     textBoxFT = flextable::flextable(as.data.frame((c("Total claims ROI :",substr(roi_table$final_roi_table[nrow(roi_table$final_roi_table),2],start=1,stop=nchar(roi_table$final_roi_table[nrow(roi_table$final_roi_table),2])-3),paste0(substr(roi_table$final_roi_table[nrow(roi_table$final_roi_table),2],start=nchar(roi_table$final_roi_table[nrow(roi_table$final_roi_table),2])-3,stop=500),"x")))))
     textBoxFT = flextable::delete_part(textBoxFT,part="header")
@@ -11,7 +12,7 @@ make_roi_calculation_table <- function(roi_table,has_rx, program) {
     textBoxFT = flextable::border_remove(textBoxFT)
   }
   if (has_rx) {
-    textBox = as.data.frame(matrix(nrow=3,ncol=3)); colnames(textBox) = c("Results","Calculation"," ")
+    textBox = as.data.frame(matrix(nrow=3,ncol=3)); colnames(textBox) = c("Results","Calculation","ROI")
     textBox[3,1] = "Overall ROI"
     if(program=="Diabetes") {textBox[2,1] = "Diabetes Rx-adjusted ROI"}
     if(program=="Hypertension") {textBox[2,1] = "Hypertension Rx-adjusted ROI"}
@@ -29,7 +30,6 @@ make_roi_calculation_table <- function(roi_table,has_rx, program) {
     textBoxFT = flextable::bold(textBoxFT,j=3)
     textBoxFT = flextable::color(textBoxFT,j=3,color="#55437d")
     textBoxFT = flextable::font(textBoxFT,fontname="Century Gothic",part="all")
-    textBoxFT = flextable::merge_v(textBoxFT,j=2:3)
     textBoxFT = flextable::align(textBoxFT,align="center",part="all")
     textBoxFT = flextable::color(textBoxFT,color="white",part="header")
     textBoxFT = flextable::bg(textBoxFT,bg="#66478F",part="header")

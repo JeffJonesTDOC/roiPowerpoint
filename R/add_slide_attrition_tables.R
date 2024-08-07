@@ -1,4 +1,5 @@
 add_slide_attrition_tables <- function(ppt, post_period_length, attrition_table_data, format1 = centurygothic24purple) {
+  require(officer)
   if (post_period_length == 1) {
     ppt <- officer::add_slide(x=ppt, layout = "Blank Layout", master = "Livongo Slide Template 2020 Q3")
     ppt <- officer::ph_with(x=ppt,value=officer::fpar(officer::ftext("Population Attrition Description",format1)),location = officer::ph_location(left=0.69,top=0.17,width=8.6,height=1.1)) #format1

@@ -2,6 +2,9 @@
 # Also generates the table showcasing ROI results.
 
 make_roi_graph_and_table <- function(roi_sheet,study,program,has_rx,zero_yaxis,year0,year1,post_period_length) {
+  require(tidyr)
+  require(flextable)
+  require(ggplot2)
   if (length(which(roi_sheet[1,] == "Year 0") > 1) || study =="YOY") {graphIndex = 1} else {graphIndex = 2}
   if (program == "Diabetes") {
     if (study == "1YR" | study == "YOY") {

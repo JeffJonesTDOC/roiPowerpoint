@@ -2,6 +2,7 @@
 # results slide.
 
 make_did_table <- function(post_period_length, claims_detail_table,pooled_phar_spending_table,year0) {
+  require(flextable)
   if (post_period_length == 1) {
     DID_table = as.data.frame(t(c("Medical",
                                   claims_detail_table[1,2],claims_detail_table[1,3],as.numeric(claims_detail_table[1,3])-as.numeric(claims_detail_table[1,2]), #Non-member med costs & difference

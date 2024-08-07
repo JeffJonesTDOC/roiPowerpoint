@@ -1,4 +1,6 @@
 add_slide_methodology <- function(ppt, post_period_length, format1 = centurygothic12, format2 = centurygothic16bold, population_conditions, data_overview_sheet, study_time_period_launch_date, year0) {
+  require(officer)
+
   # Approach Text
   {
     approachTextYearArray=array()
