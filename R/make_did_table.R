@@ -2,21 +2,31 @@
 # results slide.
 
 make_did_table <- function(post_period_length, claims_detail_table,pooled_phar_spending_table,year0) {
-  if(typeof(year0) != "character") {year0 = as.character(year0)}
   if (post_period_length == 1) {
     DID_table = as.data.frame(t(c("Medical",
-                                 claims_detail_table[1,2],claims_detail_table[1,3],as.numeric(claims_detail_table[1,2])-as.numeric(claims_detail_table[1,3]), #Non-member med costs & difference
-                                 claims_detail_table[1,5],claims_detail_table[1,6],as.numeric(claims_detail_table[1,5])-as.numeric(claims_detail_table[1,6]), # Member med costs & difference
-                                 (as.numeric(claims_detail_table[1,5])-as.numeric(claims_detail_table[1,6]))-(as.numeric(claims_detail_table[1,2])-as.numeric(claims_detail_table[1,3]))))) # DiD
+                                  claims_detail_table[1,2],claims_detail_table[1,3],as.numeric(claims_detail_table[1,3])-as.numeric(claims_detail_table[1,2]), #Non-member med costs & difference
+                                  claims_detail_table[1,5],claims_detail_table[1,6],as.numeric(claims_detail_table[1,6])-as.numeric(claims_detail_table[1,5]), # Member med costs & difference
+                                  (as.numeric(claims_detail_table[1,5])-as.numeric(claims_detail_table[1,6]))-(as.numeric(claims_detail_table[1,2])-as.numeric(claims_detail_table[1,3]))))) # DiD
     if (has_rx) {
       DID_table = rbind(DID_table,t(c("Pharmaceutical",
-                                    round(as.numeric(pooled_phar_spending_table[1,2])),round(as.numeric(pooled_phar_spending_table[1,3])),round(as.numeric(pooled_phar_spending_table[1,2])-as.numeric(pooled_phar_spending_table[1,3])),
-                                    round(as.numeric(pooled_phar_spending_table[1,5])),round(as.numeric(pooled_phar_spending_table[1,6])),round(as.numeric(pooled_phar_spending_table[1,5])-as.numeric(pooled_phar_spending_table[1,6])),
-                                    round((as.numeric(pooled_phar_spending_table[1,5])-as.numeric(pooled_phar_spending_table[1,6]))-(as.numeric(pooled_phar_spending_table[1,2])-as.numeric(pooled_phar_spending_table[1,3]))))))
+                                      round(as.numeric(pooled_phar_spending_table[1,2])),round(as.numeric(pooled_phar_spending_table[1,3])),round(as.numeric(pooled_phar_spending_table[1,3])-as.numeric(pooled_phar_spending_table[1,2])),
+                                      round(as.numeric(pooled_phar_spending_table[1,5])),round(as.numeric(pooled_phar_spending_table[1,6])),round(as.numeric(pooled_phar_spending_table[1,6])-as.numeric(pooled_phar_spending_table[1,5])),
+                                      round((as.numeric(pooled_phar_spending_table[1,5])-as.numeric(pooled_phar_spending_table[1,6]))-(as.numeric(pooled_phar_spending_table[1,2])-as.numeric(pooled_phar_spending_table[1,3]))))))
+      total_row = c("Total",
+                    round(claims_detail_table[1,2]+as.numeric(pooled_phar_spending_table[1,2])),round(claims_detail_table[1,3]+as.numeric(pooled_phar_spending_table[1,3])),
+                    round(claims_detail_table[1,3]+as.numeric(pooled_phar_spending_table[1,3]))-round(claims_detail_table[1,2]+as.numeric(pooled_phar_spending_table[1,2])),
+                    round(claims_detail_table[1,5]+as.numeric(pooled_phar_spending_table[1,5])),round(claims_detail_table[1,6]+as.numeric(pooled_phar_spending_table[1,6])),
+                    round(claims_detail_table[1,6]+as.numeric(pooled_phar_spending_table[1,6]))-round(claims_detail_table[1,5]+as.numeric(pooled_phar_spending_table[1,5])),
+                    (as.numeric(claims_detail_table[1,5])-as.numeric(claims_detail_table[1,6]))-(as.numeric(claims_detail_table[1,2])-as.numeric(claims_detail_table[1,3]))+round((as.numeric(pooled_phar_spending_table[1,5])-as.numeric(pooled_phar_spending_table[1,6]))-(as.numeric(pooled_phar_spending_table[1,2])-as.numeric(pooled_phar_spending_table[1,3]))))
+      DID_table = rbind(DID_table,total_row)
     }
     for (i in 2:8) {
-      for (j in 1:nrow(DID_table)) DID_table[j,i] = paste0("$",DID_table[j,i]); DID_table[j,i] = gsub("\\$-","-\\$",DID_table[j,i])
+      for (j in 1:nrow(DID_table)) {
+        DID_table[j,i] = paste0("$",DID_table[j,i]); DID_table[j,i] = gsub("\\$-","-$",DID_table[j,i]);
+        if (i %in% c(4,7)) if (substr(DID_table[j,i],1,1) != "-") DID_table[j,i] = paste0("+",DID_table[j,i])
+      }
     }
+
     colnames(DID_table) = c("Total allowed costs",year0,as.character(as.numeric(year0)+1),"Difference",paste0(" ",year0),paste0(" ",as.character(as.numeric(year0)+1))," Difference","Savings")
     DID_flextable = flextable::flextable(DID_table)
     DID_flextable <- flextable::add_header_row(DID_flextable,values = c(" ","Non-member","Member","DID"), colwidths = c(1,3,3,1))

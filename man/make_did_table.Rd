@@ -14,7 +14,6 @@ a year-over-year analysis will likely cause errors, as a YOY analysis has only 1
   \item{claims_detail_table}{The spending table of various condition-related and POS claims. It is returned by extract_claims_detail_table.}
   \item{pooled_phar_spending_table}{The pooled spending table of total and condition-related pharmaceutical costs. It is returned by extract_phar_table().}
   \item{year0}{Year 0, or pre-period, of the analysis. Can be specified as an integer or character. It is returned by extract_sheet_data().}
-  \item{year1}{Year 1, or first post-period, of the analysis. Can be specified as an integer or character. It is returned by extract_sheet_data().}
   }
 \examples{
 
