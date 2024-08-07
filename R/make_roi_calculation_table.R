@@ -1,4 +1,4 @@
-create_roi_calculation_table <- function(roi_table,has_rx, program) {
+make_roi_calculation_table <- function(roi_table,has_rx, program) {
   if (!has_rx) {
     textBoxFT = flextable::flextable(as.data.frame((c("Total claims ROI :",substr(roi_table$final_roi_table[nrow(roi_table$final_roi_table),2],start=1,stop=nchar(roi_table$final_roi_table[nrow(roi_table$final_roi_table),2])-3),paste0(substr(roi_table$final_roi_table[nrow(roi_table$final_roi_table),2],start=nchar(roi_table$final_roi_table[nrow(roi_table$final_roi_table),2])-3,stop=500),"x")))))
     textBoxFT = flextable::delete_part(textBoxFT,part="header")
