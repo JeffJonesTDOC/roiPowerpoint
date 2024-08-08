@@ -2,8 +2,13 @@
 # The study argument is used to differentiate between sheet name variations depending on the amount of years used in the analysis.
 
 
-read_excel <- function(study,file_name) {
+read_excel <- function(study,file_name,directory) {
   require(openxlsx)
+  current_dir = getwd()
+  tryCatch({
+    setwd(directory)
+  },error=function(e){print(paste0("Unable to find ",directory))})
+
   tryCatch({
     if (study == "YOY" | study == "1YR" | study=="2YR") {
       roi_sheet = openxlsx::read.xlsx(file_name,sheet="ROI")
@@ -48,5 +53,6 @@ read_excel <- function(study,file_name) {
     print(e)
     stop()
   })
+  setwd(current_dir)
   return(list(roi_sheet = roi_sheet, data_summary_sheet = data_summary_sheet,summary_stats_sheet = summary_stats_sheet,data_overview_sheet = data_overview_sheet,pharmacy_costs_sheet = pharmacy_costs_sheet,PDC_sheet = PDC_sheet))
 }

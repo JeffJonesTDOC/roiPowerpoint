@@ -2,7 +2,7 @@
 \alias{read_excel}
 \title{Read Excel Sheets Pertinent to ROI Presentation}
 \usage{
-read_excel(study,file_name)
+read_excel(study,file_name,directory)
 }
 \description{
 Reads all relevant sheets used to generate the ROI PowerPoint from the given ROI workbook specified by file_name. The sheets are:
@@ -18,6 +18,7 @@ Reads all relevant sheets used to generate the ROI PowerPoint from the given ROI
 \arguments{
 \item{study}{the timeframe of the ROI analysis. Set to "YOY", "1YR", "2YR", or "3YR".}
 \item{file_name}{The name of the ROI workbook from which the sheets are extracted. Must include .xlsm extension.}
+\item{directory}The function reads the Excel workbook specified by file_name from this specified directory.}
 }
 \examples{
 
