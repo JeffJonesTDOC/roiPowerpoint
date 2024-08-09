@@ -3,7 +3,8 @@
 
 
 make_attrition_table <- function(post_period_length,program,summary_stats_sheet,min_activation_length,population_conditions,study_start_date) {
-require(flextable)
+  require(flextable)
+  require(stringr)
   # Initialize a few arrays that are population in the following for loop.
   final_cohort_size = array(dim=post_period_length)
   n_activated = array(dim=post_period_length) # n_activated will be used in the result overview savings flextable.
@@ -74,7 +75,7 @@ require(flextable)
       attrition_dataframe[which(grepl("Enrolled",attrition_dataframe[,1]))+1,4] = as.numeric(attrition_dataframe[grepl("Enrolled",attrition_dataframe[,1]),4]) - as.numeric(n_member_outlier)
       attrition_dataframe[which(grepl("Enrolled",attrition_dataframe[,1]))+1,3] = as.numeric(attrition_dataframe[grepl("Enrolled",attrition_dataframe[,1]),2]) / as.numeric(attrition_dataframe[which(grepl("Total unique",attrition_dataframe[,1])),2])
       attrition_dataframe[which(grepl("Enrolled",attrition_dataframe[,1]))+1,5] = as.numeric(attrition_dataframe[grepl("Enrolled",attrition_dataframe[,1]),4]) / as.numeric(attrition_dataframe[which(grepl("Total unique",attrition_dataframe[,1])),4])
-      for (i in 1:nrow(attrition_dataframe)) {attrition_dataframe[i,1] = str_replace(attrition_dataframe[i,1],"with more than","not with more than")}
+      for (i in 1:nrow(attrition_dataframe)) {attrition_dataframe[i,1] = stringr::str_replace(attrition_dataframe[i,1],"with more than","not with more than")}
     }
 
     # Add a final "Matched Row" where member sample size = non-member sample size for clarity.
