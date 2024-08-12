@@ -122,7 +122,7 @@ if (has_rx) {
 
 roi_calculation_table = make_roi_calculation_table(roi_table = roi_table, has_rx = has_rx, program = program)
 
-ppt = get_pptx_template("/Users/jeffreyjones/Downloads","TemplatePPTX.pptx")
+ppt = get_pptx_template("~/sharedFolders/jeff.jones/PowerPoint_Automation/","TemplatePPTX.pptx")
 ppt = add_slide_title(ppt,
                       client_name = sheet_data$client_name,
                       program = program,
