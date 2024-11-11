@@ -24,6 +24,7 @@ include_rx_table <- function (post_period_length, pooled_phar_spending_table, cl
   names(pooled_phar_spending_table) = names(claims_detail_table)
   claims_detail_table_with_phar = rbind(claims_detail_table,
                                         pooled_phar_spending_table)
+  numeric_claims_detail_table_with_phar = claims_detail_table_with_phar
   for (k in 2:ncol(claims_detail_table_with_phar)) {
     if (!is.na(as.numeric(claims_detail_table_with_phar[2,
                                                         k]))) {
@@ -47,7 +48,7 @@ include_rx_table <- function (post_period_length, pooled_phar_spending_table, cl
   for (i1 in 1:nrow(claims_detail_table_with_phar)) {
     for (j1 in (ncol(claims_detail_table_with_phar) - 2 *
                 post_period_length + 1):ncol(claims_detail_table_with_phar)) {
-      if (claims_detail_table_with_phar[i1, j1] > 0) {
+      if (numeric_claims_detail_table_with_phar[i1, j1] > 0) {
         claims_detail_table_with_phar_ft <- flextable::bg(claims_detail_table_with_phar_ft,
                                                           i = i1, j = j1, bg = "#E1DDE5", part = "body")
       }
