@@ -1,7 +1,7 @@
-extract_pdc_table <- function(program,has_phar,pdc_sheet) {
+extract_pdc_table <- function(program,has_rx,pdc_sheet) {
   require(officer)
   require(flextable)
-  if (has_phar & program == 'Diabetes') {
+  if (has_rx & program == 'Diabetes') {
     table_start_col = which(grepl("gpi4_drug_class",pdc_sheet))
     table_start_row = which(grepl("gpi4_drug_class",pdc_sheet[,table_start_col]))
     pdc_table = pdc_sheet[(table_start_row+1):(table_start_row+12),table_start_col:(table_start_col+10)]
