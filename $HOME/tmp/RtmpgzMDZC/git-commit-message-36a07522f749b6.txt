@@ -1,0 +1,3 @@
+-Fixed an oversight with get_pptx_template where it was not changing back to the previous session's working directory.
+
+-Modified the example code to point to the correct template directory in get_pptx_template.

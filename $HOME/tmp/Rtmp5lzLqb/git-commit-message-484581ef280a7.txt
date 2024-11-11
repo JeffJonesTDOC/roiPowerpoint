@@ -1,0 +1,3 @@
+Added fake data files for running examples in /data.
+
+Added several functions for creating the powerpoint, all named "add_slide_<slide name>"

@@ -1,0 +1,3 @@
+Modified make_roi_graph_and_table.R function by renaming "nYear" to "post_period_length" and "roiSheet" to "roi_sheet"
+
+Fixed itemization error in make_roi_graph_and_table.Rd helper file, and included post_period_length as one of the arguments.

@@ -1,0 +1,3 @@
+Modified add_slide_attrition_tables:
+
+- Replaced "attrTableY" with attrition_table_y, to align with the nomenclature of the object returned by make_attrition_table.

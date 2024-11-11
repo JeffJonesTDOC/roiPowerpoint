@@ -1,0 +1,7 @@
+Made the following changes to  extract_claims_detail_table.R:
+
+- Renamed "ROI_sheet" to "roi_sheet".
+- Set default for HTN_population to "All"
+- Set default for combine_ip_op to FALSE
+- Set default for remove_POS to FALSE
+- Added function arguments to the .Rd helper file.

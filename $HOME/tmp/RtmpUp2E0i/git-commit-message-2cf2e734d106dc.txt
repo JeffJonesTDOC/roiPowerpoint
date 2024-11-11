@@ -1,0 +1,7 @@
+Several changes related to claims_detail table:
+
+-Renamed add_slide_spend_summary_table to add_slide_claims_detail_table.
+
+-Renamed spend_summary to claims_detail in add_slide_claims_detail_table. 
+
+-Modified extract_phar_table, extract_pppm_changes, include_rx_table, and make_did_table helper files to align with this new nomenclature.

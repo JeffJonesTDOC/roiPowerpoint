@@ -1,0 +1,4 @@
+-Modified add_slide_graph_results:
+
+Renamed textBoxFT to roi_calculation_table.
+Modified the .Rd helper function to reflect this change.

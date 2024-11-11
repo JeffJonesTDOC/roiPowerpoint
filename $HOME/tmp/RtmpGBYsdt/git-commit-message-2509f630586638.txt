@@ -1,0 +1,1 @@
+Modified make_attrition_table.R code to return a list with names. Previously, the list object returned did not have names.

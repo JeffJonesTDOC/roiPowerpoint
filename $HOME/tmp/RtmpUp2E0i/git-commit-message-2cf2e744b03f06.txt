@@ -1,0 +1,5 @@
+Made the following changes to make_roi_table:
+
+- Renamed nYear argument to post_period_length
+- Renamed PPPM_changes argument to pppm_changes
+- Some text modification in the .Rd helper file.

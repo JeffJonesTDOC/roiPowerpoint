@@ -1,0 +1,3 @@
+In include_rx_table, renamed "nYear" to "post_period_length" to align with other package nomenclature.
+
+In extract_phar_table, included two arguments missing from the .Rd helper file.

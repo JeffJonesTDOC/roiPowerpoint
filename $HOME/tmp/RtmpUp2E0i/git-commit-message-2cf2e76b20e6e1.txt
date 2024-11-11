@@ -1,0 +1,4 @@
+Modified add_slide_exec_summary:
+
+extract_pppm_changes() now returns a dataframe rather than a list, since the pooled pharmacy table extract is now a separate function. Thus,
+pmpm_phar_tables$PMPM_changes is now simply pmpm_phar_tables.

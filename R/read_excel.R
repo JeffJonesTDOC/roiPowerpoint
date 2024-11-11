@@ -53,6 +53,13 @@ read_excel <- function(study,file_name,directory) {
     print(e)
     stop()
   })
+  tryCatch({
+    YOY_sheet = openxlsx::read.xlsx(file_name,sheet="YOY_count")
+  },error=function(e) {
+    print("Error in read_excel when reading YOY_count sheet.")
+    print(e)
+    stop()
+  })
   setwd(current_dir)
-  return(list(roi_sheet = roi_sheet, data_summary_sheet = data_summary_sheet,summary_stats_sheet = summary_stats_sheet,data_overview_sheet = data_overview_sheet,pharmacy_costs_sheet = pharmacy_costs_sheet,PDC_sheet = PDC_sheet))
+  return(list(roi_sheet = roi_sheet, data_summary_sheet = data_summary_sheet,summary_stats_sheet = summary_stats_sheet,data_overview_sheet = data_overview_sheet,pharmacy_costs_sheet = pharmacy_costs_sheet,PDC_sheet = PDC_sheet,YOY_sheet = YOY_sheet))
 }

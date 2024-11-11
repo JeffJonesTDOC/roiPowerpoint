@@ -1,0 +1,1 @@
+Removed test_function.R from R/, man/, and NAMESPACE

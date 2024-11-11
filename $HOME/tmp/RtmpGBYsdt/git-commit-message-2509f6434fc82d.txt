@@ -1,0 +1,17 @@
+- Created get_pptx_template.Rd helper file
+- Created add_slide_pooled_cohort.Rd helper file
+- Created add_slide_program_title.Rd helper file
+- Created add_slide_spend_summary_table.Rd helper file
+- Created add_slide_title.Rd helper file
+- Created add_slide_methodology.Rd helper file
+- Created add_slide_graph_results.Rd helper file
+- Created add_slide_exec_summary.Rd helper file
+- Created add_slide_attrition_tables.Rd helper file
+- Created add_slide_additional_methodology.Rd helper file
+- Deleted int_breaks.R function
+
+- Modified the following arguments for add_slide_methodology.R:
+     "nyear" renamed to "post_period_length"
+     "format1" default set to centurygothic12
+     "format2" default set to centurygothic16bold
+    "sheet_data_extract$studyTimePeriodLaunchDate" renamed to study_time_period_launch_date

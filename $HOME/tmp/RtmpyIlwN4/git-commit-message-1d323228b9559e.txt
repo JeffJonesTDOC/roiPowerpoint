@@ -1,0 +1,3 @@
+-Deleted data files (I'm still figuring this out)
+-Added require(stringr) to make_attrition_table
+-Included int_breaks and percent functions to the package. They are small helper functions used by make_attrition_table and make_roi_graph_and_table, respectively.

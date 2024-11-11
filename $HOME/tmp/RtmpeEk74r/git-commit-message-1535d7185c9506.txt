@@ -1,0 +1,3 @@
+- Renamed "create_roi_calculation_table" function to "make_roi_calculation_table"
+
+- Modified make_did_table to include a third row of medical+rx spending, when has_phar == T.
