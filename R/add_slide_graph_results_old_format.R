@@ -1,4 +1,4 @@
-add_slide_graph_results <- function(ppt, post_period_length, format1 = centurygothic24purple, format2 = centurygothic8gray, graphs, did_table, program, supply_cost, price_of_program, roi_calculation_table, roi_table) {
+add_slide_graph_results_old_format <- function(ppt, post_period_length, format1 = centurygothic24purple, format2 = centurygothic8gray, graphs, did_table, program, supply_cost, price_of_program, roi_calculation_table, roi_table) {
   require(officer)
   if (post_period_length==1) {
     ppt <- officer::add_slide(x=ppt, layout = "Blank Layout", master = "Livongo Slide Template 2020 Q3")

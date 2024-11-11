@@ -1,7 +1,7 @@
 # Generates the overall claims spending graph for members (Actual), members (Expected), and non-members.
 # Also generates the table showcasing ROI results.
 
-make_roi_graph_and_table <- function(roi_sheet,study,program,has_rx,zero_yaxis,year0,year1,post_period_length) {
+make_roi_graph_and_table_old_format <- function(roi_sheet,study,program,has_rx,zero_yaxis,year0,year1,post_period_length) {
   require(tidyr)
   require(flextable)
   require(ggplot2)

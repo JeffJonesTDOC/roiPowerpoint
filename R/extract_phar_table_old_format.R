@@ -2,7 +2,7 @@
 # also assigns appropriate column names to the table and calculates the
 # difference-in-difference dollar amounts and appends them to the table.
 
-extract_phar_table <- function(has_rx, post_period_length, ROI_sheet, pharmacy_costs_sheet, claims_detail_table_column_names, claims_detail_table) {
+extract_phar_table_old_format <- function(has_rx, post_period_length, ROI_sheet, pharmacy_costs_sheet, claims_detail_table_column_names, claims_detail_table) {
   if (has_rx) {
     if (post_period_length > 1) {
       rx_costs_row_index = which(ROI_sheet[,1] == "Pharmacy costs")+3

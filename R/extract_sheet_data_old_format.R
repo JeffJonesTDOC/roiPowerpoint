@@ -3,7 +3,7 @@
 # year 1 and year 0, minimum enrollment length (3, 6, or 9 months), client name, and supply cost (for DM).
 #
 
-extract_sheet_data <- function(roi_sheet, program, study, data_summary_sheet, data_overview_sheet,HTN_population) {
+extract_sheet_data_old_format <- function(roi_sheet, program, study, data_summary_sheet, data_overview_sheet,HTN_population) {
   # Extract the price of livongo before modifying the file in some cases.
   price_of_program = round(as.numeric(roi_sheet[which(roi_sheet[,1] == 'Price of Livongo'),3][1]),0)
 
