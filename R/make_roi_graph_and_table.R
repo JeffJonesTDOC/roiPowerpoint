@@ -26,16 +26,27 @@ make_roi_graph_and_table <- function(numeric_did_table, post_period_length, year
                    ylim=c(min(graph_data_table[,-1])*0.9,max(graph_data_table[,-1])*1.1),
                    xlab="Year",ylab = "PPPM Costs",xaxt='n')
   axis(1,at=seq(as.numeric(year0),(as.numeric(year0)+post_period_length)))
-  lines(as.numeric(year0):(as.numeric(year0)+post_period_length),graph_data_table[2,-1],lwd=4,col=rgb(0.827,0.161,0.768,alpha=0.3),lty=1)
   lines(as.numeric(year0):(as.numeric(year0)+post_period_length),graph_data_table[3,-1],lwd=4,col=6,lty=1)
   points(as.numeric(year0):(as.numeric(year0)+post_period_length),graph_data_table[1,2:3],pch=19,col=4)
-  points(as.numeric(year0):(as.numeric(year0)+post_period_length),graph_data_table[2,2:3],pch=19,col=rgb(0.827,0.161,0.768,alpha=0.3))
   points(as.numeric(year0):(as.numeric(year0)+post_period_length),graph_data_table[3,2:3],pch=19,col=6)
-  legend(as.numeric(year0)-0.1,max(graph_data_table[,-1]*1.1),legend=c("Non-Livongo","Livongo, expected","Livongo, actual"),col=c(4,rgb(0.827,0.161,0.768,alpha=0.30),6),lty=c(1,1,1),lwd=c(3,3,3),cex=0.75)
-  for (i in 1:3) {
-    for (j in 2:ncol(orders)) {
-      if (!(j==2 && orders[i,j]==2)) { # Don't plot livongo expected in pre-period, it will always be the same as livongo actual pre-period
-        text(x = (seq(as.numeric(year0),(as.numeric(year0)+post_period_length))+c(-0.03,rep(1,post_period_length-1),0.03))[j-1], y=graph_data_table[orders[i,j],j]*c(1.01,1,0.99)[i],labels = paste0("$",graph_data_table[orders[i,j],j]))
+  if (!(graph_data_table[1,2] == graph_data_table[3,2])) {
+    lines(as.numeric(year0):(as.numeric(year0)+post_period_length),graph_data_table[2,-1],lwd=4,col=rgb(0.827,0.161,0.768,alpha=0.3),lty=1)
+    points(as.numeric(year0):(as.numeric(year0)+post_period_length),graph_data_table[2,2:3],pch=19,col=rgb(0.827,0.161,0.768,alpha=0.3))
+    legend(as.numeric(year0)-0.1,max(graph_data_table[,-1]*1.1),legend=c("Non-Livongo","Livongo, expected","Livongo, actual"),col=c(4,rgb(0.827,0.161,0.768,alpha=0.30),6),lty=c(1,1,1),lwd=c(3,3,3),cex=0.75)
+    for (i in 1:3) {
+      for (j in 2:ncol(orders)) {
+        if (!(j==2 && orders[i,j]==2)) { # Don't plot livongo expected in pre-period, it will always be the same as livongo actual pre-period
+          text(x = (seq(as.numeric(year0),(as.numeric(year0)+post_period_length))+c(-0.03,rep(1,post_period_length-1),0.03))[j-1], y=graph_data_table[orders[i,j],j]*c(1.01,1,0.99)[i],labels = paste0("$",graph_data_table[orders[i,j],j]))
+        }
+      }
+    }
+  } else {
+    legend(as.numeric(year0)-0.1,max(graph_data_table[,-1]*1.1),legend=c("Non-Livongo","Livongo"),col=c(4,6),lty=c(1,1),lwd=c(3,3),cex=0.75)
+    for (i in c(1,3)) {
+      for (j in 2:ncol(orders)) {
+        if (!(j==2 && orders[i,j]==2)) { # Don't plot livongo expected in pre-period, it will always be the same as livongo actual pre-period
+          text(x = (seq(as.numeric(year0),(as.numeric(year0)+post_period_length))+c(-0.03,rep(1,post_period_length-1),0.03))[j-1], y=graph_data_table[orders[i,j],j]*c(1.01,1,0.99)[i],labels = paste0("$",graph_data_table[orders[i,j],j]))
+        }
       }
     }
   }
