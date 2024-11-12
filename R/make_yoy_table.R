@@ -4,7 +4,7 @@ make_yoy_table <- function(yoy_sheet,study_launch_date) {
   names(yoy_table) = c("Cohorts","Activation Timeframe","Number of Members in Analysis from Cohort")
   for (i in 1:nrow(yoy_table)) {
     yoy_table[i,1] = paste0("Year ",i," on program")
-    yoy_table[i,2] = paste0(format(study_launch_date-(365*i-5),"%m/%Y"),"-",format(study_launch_date-(365*i-5)+365, "%m/%Y"))
+    yoy_table[i,2] = paste0(format(study_launch_date-(365*i-5),"%m/%Y"),"-",format(study_launch_date-(365*i-5)+334, "%m/%Y"))
     yoy_table[i,3] = yoy_sheet[i,3]
   }
   yoy_table[i+1,] = c("Total"," ",sum(yoy_table[,3]))

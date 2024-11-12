@@ -36,7 +36,8 @@ make_roi_graph_and_table <- function(numeric_did_table, post_period_length, year
     for (i in 1:3) {
       for (j in 2:ncol(orders)) {
         if (!(j==2 && orders[i,j]==2)) { # Don't plot livongo expected in pre-period, it will always be the same as livongo actual pre-period
-          text(x = (seq(as.numeric(year0),(as.numeric(year0)+post_period_length))+c(-0.03,rep(1,post_period_length-1),0.03))[j-1], y=graph_data_table[orders[i,j],j]*c(1.01,1,0.99)[i],labels = paste0("$",graph_data_table[orders[i,j],j]))
+          if (floor(log10(graph_data_table[orders[i,j],j]))+1 == 4) {offset_mult_pos = 1.01; offset_mult_neg = 0.99} else {offset_mult_pos = 1.03; offset_mult_neg = 0.97}
+          text(x = (seq(as.numeric(year0),(as.numeric(year0)+post_period_length))+c(-0.03,rep(1,post_period_length-1),0.03))[j-1], y=graph_data_table[orders[i,j],j]*c(offset_mult_pos,1,offset_mult_neg)[i],labels = paste0("$",graph_data_table[orders[i,j],j]))
         }
       }
     }
@@ -45,7 +46,8 @@ make_roi_graph_and_table <- function(numeric_did_table, post_period_length, year
     for (i in c(1,3)) {
       for (j in 2:ncol(orders)) {
         if (!(j==2 && orders[i,j]==2)) { # Don't plot livongo expected in pre-period, it will always be the same as livongo actual pre-period
-          text(x = (seq(as.numeric(year0),(as.numeric(year0)+post_period_length))+c(-0.03,rep(1,post_period_length-1),0.03))[j-1], y=graph_data_table[orders[i,j],j]*c(1.01,1,0.99)[i],labels = paste0("$",graph_data_table[orders[i,j],j]))
+          if (floor(log10(graph_data_table[orders[i,j],j]))+1 == 4) {offset_mult_pos = 1.01; offset_mult_neg = 0.99} else {offset_mult_pos = 1.03; offset_mult_neg = 0.97}
+          text(x = (seq(as.numeric(year0),(as.numeric(year0)+post_period_length))+c(-0.03,rep(1,post_period_length-1),0.03))[j-1], y=graph_data_table[orders[i,j],j]*c(offset_mult_pos,1,offset_mult_neg)[i],labels = paste0("$",graph_data_table[orders[i,j],j]))
         }
       }
     }
