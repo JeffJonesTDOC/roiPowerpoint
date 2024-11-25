@@ -8,7 +8,7 @@ extract_pdc_table <- function(program,has_rx,pdc_sheet) {
     names(pdc_table) = c("GPI4 Drug Class","Member","N Pre","N Post","N Both","N Term","% Term","N New","% New","Net New","New/Term Ratio")
     #names(pdc_table) = pdc_sheet[table_start_row,table_start_col:(table_start_col+10)]
 
-    for (j in 1:ncol(pdc_table)) {if (grepl("%",names(pdc_table)[j])) {pdc_table[,j] = percent(as.numeric(pdc_table[,j]),digits = 2)}}
+    for (j in 1:ncol(pdc_table)) {if (grepl("%",names(pdc_table)[j]) | grepl("Ratio",names(pdc_table[j])))  {pdc_table[,j] = percent(as.numeric(pdc_table[,j]),digits = 2)}}
 
     pdc_ft = flextable(pdc_table)
     pdc_ft = bold(pdc_ft,part="header")
