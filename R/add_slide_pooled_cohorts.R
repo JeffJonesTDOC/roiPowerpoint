@@ -1,7 +1,8 @@
-add_slide_pooled_cohorts <- function(ppt, study,format1 = centurygothic24purple, pooled_cohort_tables) {
+add_slide_pooled_cohorts <- function(ppt, study,format1 = centurygothic24purple, pooled_cohort_tables, branding = "Teladoc") {
   require(officer)
+  if (branding == "Teladoc") {master_slide = "Teladoc Slide Template 2020 Q3"} else {master_slide = "Livongo Slide Template 2020 Q3"}
   if (study == "YOY") {
-    ppt <- officer::add_slide(x=ppt, layout = "Blank Layout", master = "Livongo Slide Template 2020 Q3")
+    ppt <- officer::add_slide(x=ppt, layout = "Blank Layout", master = master_slide)
     ppt <- officer::ph_with(x=ppt,value=officer::fpar(officer::ftext("Diabetes Pooled Cohort",format1)),location = officer::ph_location_type(type="title"))
     ppt <- officer::ph_with(x=ppt, value = pooled_cohort_tables$flextable1, location = officer::ph_location(left=2.3,top=0.88,width = 7.17, height = 2.2))
     ppt <- officer::ph_with(x=ppt, value = pooled_cohort_tables$flextable2, location = officer::ph_location(left=2.41,top=3.18,width = 5.2, height = 2.1))

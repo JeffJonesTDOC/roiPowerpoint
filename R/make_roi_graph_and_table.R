@@ -10,7 +10,7 @@ make_roi_graph_and_table <- function(numeric_did_table, post_period_length, year
   m_total_costs = as.numeric(numeric_did_table[nrow(numeric_did_table),(col_index+(2*post_period_length)+1):(col_index+(3*post_period_length)+1)])
   graph_data_table = as.data.frame(matrix(nrow=3,ncol=post_period_length+2))
   names(graph_data_table) = c("Group",as.numeric(year0):(as.numeric(year0)+post_period_length))
-  graph_data_table[,1] = c("Non-Livongo","Livongo, expected","Livongo, actual")
+  graph_data_table[,1] = c("Non-Member","Member (expected)","Member (actual)")
   graph_data_table[1,-1] = nm_total_costs
   graph_data_table[2,-1] = c(m_total_costs[1],m_total_costs[1]+nm_diffs)
   graph_data_table[3,-1] = m_total_costs

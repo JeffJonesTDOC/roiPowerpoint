@@ -1,6 +1,6 @@
-add_slide_methodology <- function(ppt, post_period_length, format1 = centurygothic12, format2 = centurygothic16bold, population_conditions, data_overview_sheet, study_time_period_launch_date, year0) {
+add_slide_methodology <- function(ppt, post_period_length, format1 = centurygothic12, format2 = centurygothic16bold, population_conditions, data_overview_sheet, study_time_period_launch_date, year0, branding = "Teladoc") {
   require(officer)
-
+  if (branding == "Teladoc") {master_slide = "Teladoc Slide Template 2020 Q3"} else {master_slide = "Livongo Slide Template 2020 Q3"}
   # Approach Text
   {
     approachTextYearArray=array()
@@ -86,7 +86,7 @@ add_slide_methodology <- function(ppt, post_period_length, format1 = centurygoth
 
   # Slide Creation
   {
-    ppt <- officer::add_slide(ppt,layout="Methodology",master="Livongo Slide Template 2020 Q3")
+    ppt <- officer::add_slide(ppt,layout="Methodology",master=master_slide)
     ppt <- officer::ph_with(x=ppt,value=methodology1,location=officer::ph_location(left=2.43,top=0.8,width=5.85,height=1))
     ppt <- officer::ph_with(x=ppt,value=inclusionCriteria,location=officer::ph_location(left=2.43,top=1.96,width=5.85,height=2), level_list = c(1L, 2L, 3L))
     ppt <- officer::ph_with(x=ppt,value=methodology3,location=officer::ph_location(left=2.43,top=3.3,width=5.85,height=0.66))

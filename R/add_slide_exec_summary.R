@@ -1,9 +1,10 @@
-add_slide_exec_summary <- function(ppt, has_rx, post_period_length, pmpm_phar_tables, program, year0, roi_table) {
+add_slide_exec_summary <- function(ppt, has_rx, post_period_length, pmpm_phar_tables, program, year0, roi_table, branding = "Teladoc") {
   require(officer)
   require(flextable)
+  if (branding == "Teladoc") {master_slide = "Teladoc Slide Template 2020 Q3"} else {master_slide = "Livongo Slide Template 2020 Q3"}
   # Create the slide "skeleton".
-  if (!has_rx) {ppt <- officer::add_slide(ppt, layout = "Executive Summary No Phar", master = "Livongo Slide Template 2020 Q3")}
-  if (has_rx) {ppt <- officer::add_slide(ppt, layout = "Executive Summary Phar", master = "Livongo Slide Template 2020 Q3")}
+  if (!has_rx) {ppt <- officer::add_slide(ppt, layout = "Executive Summary No Phar", master = master_slide)}
+  if (has_rx) {ppt <- officer::add_slide(ppt, layout = "Executive Summary Phar", master = master_slide)}
 
   for (i in 1:post_period_length) {
 
