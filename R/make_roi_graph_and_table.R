@@ -32,7 +32,7 @@ make_roi_graph_and_table <- function(numeric_did_table, post_period_length, year
   if (!(graph_data_table[1,2] == graph_data_table[3,2])) {
     lines(as.numeric(year0):(as.numeric(year0)+post_period_length),graph_data_table[2,-1],lwd=4,col=rgb(0.827,0.161,0.768,alpha=0.3),lty=1)
     points(as.numeric(year0):(as.numeric(year0)+post_period_length),graph_data_table[2,2:3],pch=19,col=rgb(0.827,0.161,0.768,alpha=0.3))
-    legend(as.numeric(year0)-0.1,max(graph_data_table[,-1]*1.1),legend=c("Non-Livongo","Livongo, expected","Livongo, actual"),col=c(4,rgb(0.827,0.161,0.768,alpha=0.30),6),lty=c(1,1,1),lwd=c(3,3,3),cex=0.75)
+    legend(as.numeric(year0)-0.1,max(graph_data_table[,-1]*1.1),legend=c("Non-Member","Member, expected","Member, actual"),col=c(4,rgb(0.827,0.161,0.768,alpha=0.30),6),lty=c(1,1,1),lwd=c(3,3,3),cex=0.75)
     for (i in 1:3) {
       for (j in 2:ncol(orders)) {
         if (!(j==2 && orders[i,j]==2)) { # Don't plot livongo expected in pre-period, it will always be the same as livongo actual pre-period
