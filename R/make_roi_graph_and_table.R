@@ -42,7 +42,7 @@ make_roi_graph_and_table <- function(numeric_did_table, post_period_length, year
       }
     }
   } else {
-    legend(as.numeric(year0)-0.1,max(graph_data_table[,-1]*1.1),legend=c("Non-Livongo","Livongo"),col=c(4,6),lty=c(1,1),lwd=c(3,3),cex=0.75)
+    legend(as.numeric(year0)-0.1,max(graph_data_table[,-1]*1.1),legend=c("Non-Member","Member"),col=c(4,6),lty=c(1,1),lwd=c(3,3),cex=0.75)
     for (i in c(1,3)) {
       for (j in 2:ncol(orders)) {
         if (!(j==2 && orders[i,j]==2)) { # Don't plot livongo expected in pre-period, it will always be the same as livongo actual pre-period
